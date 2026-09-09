@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+  =============================================================
+  SITO PORTFOLIO — ADRIANO LIBRANTI
+  Progetto "The Social Prosthesis" — docufilm
+  =============================================================
+  Tipo: PROGETTO PERSONALE → testo + una galleria piccola di still
+  (nessun video incorporato: si può linkare altrove). Collegata dalla
+  prima striscia in progetti-personali.html.
+
+  Per crearne uno nuovo, duplica questo file (o un altro progetto
+  esistente, es. progetto-aurora.html) e adatta i blocchi — vedi
+  "Come aggiungere un nuovo progetto" in README.md.
+-->
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Social Prosthesis — Adriano Libranti</title>
+  <meta name="description" content="Adriano Libranti — The Social Prosthesis: docufilm su nuove tecnologie e storytelling.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body id="top">
+
+  <!-- CURSORE PERSONALIZZATO — identico a index.html, vedi lì i commenti -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__dot" id="cursorDot"></div>
+    <div class="cursor__ring" id="cursorRing">
+      <span class="cursor__label" id="cursorLabel"></span>
+    </div>
+    <div class="cursor__caret" id="cursorCaret"></div>
+  </div>
+
+  <!-- Texture "grana pellicola", identica a index.html -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ===========================================================
+       HEADER / NAVIGAZIONE — uguale al resto del sito.
+  =========================================================== -->
+  <header class="site-header">
+    <a href="index.html" class="site-header__logo" data-cursor-text="Home">
+      <img src="assets/img/logo.png" alt="Adriano Libranti">
+    </a>
+
+    <nav class="site-header__nav">
+      <a href="index.html#servizi" data-cursor-text="Vai">Cosa faccio</a>
+      <a href="index.html#lavori" data-cursor-text="Vai">Portfolio</a>
+      <a href="index.html#chi-sono" data-cursor-text="Vai">Chi sono</a>
+      <a href="index.html#contatti" data-cursor-text="Vai">Contatti</a>
+    </nav>
+
+    <a href="mailto:librantiadriano@gmail.com" class="site-header__cta" data-cursor-text="Scrivi">
+      Scrivimi
+    </a>
+  </header>
+
+  <main>
+
+    <!-- ===========================================================
+         HERO DEL PROGETTO
+    =========================================================== -->
+    <section class="project-hero">
+      <a href="progetti-personali.html" class="project-hero__back" data-cursor-text="Vai">
+        ← Progetti personali
+      </a>
+
+      <h1 class="project-hero__title reveal" data-cursor="text">The Social Prosthesis</h1>
+
+      <div class="project-hero__meta reveal">
+        <div class="project-hero__meta-item">
+          <span class="project-hero__meta-label">Tipo</span>
+          <span class="project-hero__meta-value">Docufilm</span>
+        </div>
+        <div class="project-hero__meta-item">
+          <span class="project-hero__meta-label">Anno</span>
+          <span class="project-hero__meta-value">2025</span>
+        </div>
+        <div class="project-hero__meta-item">
+          <span class="project-hero__meta-label">Ruolo</span>
+          <span class="project-hero__meta-value">Sceneggiatura, regia, fotografia, 3D, compositing</span>
+        </div>
+      </div>
+
+      <!-- MODIFICA QUI quando avrai la foto vera: vedi il README in
+           assets/img/progetti/the-social-prosthesis/ -->
+      <div class="project-hero__cover reveal" aria-hidden="true"></div>
+    </section>
+
+    <!-- ===========================================================
+         CORPO DEL PROGETTO — testo + galleria piccola
+    =========================================================== -->
+    <div class="project-body">
+
+      <p class="project-body__text reveal">
+        Un progetto che accompagna il caso studio della tesi: Nuove tecnologie e storytelling: comunicare nell'era della distrazione.
+        Il progetto è nato come un docufilm, scritto interamente....
+      </p>
+
+      <!-- Galleria piccola: 4 still dal docufilm. MODIFICA QUI quando
+           avrai le foto vere: vedi il README in
+           assets/img/progetti/the-social-prosthesis/ -->
+      <div class="project-gallery reveal">
+        <div class="project-gallery__item" aria-hidden="true"></div>
+        <div class="project-gallery__item" aria-hidden="true"></div>
+        <div class="project-gallery__item" aria-hidden="true"></div>
+        <div class="project-gallery__item" aria-hidden="true"></div>
+      </div>
+
+      <p class="project-body__text reveal">
+        In lavorazione la sottotitolazione per l'invio ai festival.
+      </p>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER — versione ridotta come nelle altre pagine "elenco
+       progetti": niente intestazione "— Parliamo", solo email,
+       social e riga finale. -->
+  <footer class="contact" id="contatti">
+    <a href="mailto:librantiadriano@gmail.com" class="contact__email reveal" data-cursor-text="Scrivi">
+      librantiadriano@gmail.com
+    </a>
+
+    <div class="contact__socials reveal">
+      <a href="#" data-cursor-text="Vai">LinkedIn</a>
+      <a href="#" data-cursor-text="Vai">Instagram</a>
+      <a href="#" data-cursor-text="Vai">Facebook</a>
+    </div>
+
+    <div class="contact__meta">
+      <span>© <span id="year"></span> Adriano Libranti — Creative Strategist</span>
+      <a href="#top" data-cursor-text="Su">Torna su ↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
