@@ -127,9 +127,9 @@ function initCustomCursor() {
     el.addEventListener("mouseleave", () => cursor.classList.remove("is-text-hovering"));
 
     // Il caret prende sempre il colore ESATTO del testo che sta
-    // coprendo (bianco di default, oro sulle parole in <em>) così
+    // coprendo (bianco di default, arancio sulle parole in <em>) così
     // il blend-mode "difference" lo fa diventare nero in entrambi i
-    // casi — non solo sull'oro. "mouseover" (a differenza di
+    // casi — non solo sull'accento. "mouseover" (a differenza di
     // "mouseenter") si riattiva anche passando da un figlio
     // all'altro (es. dal testo normale a un <em> e viceversa),
     // quindi il colore resta sempre aggiornato in tempo reale.

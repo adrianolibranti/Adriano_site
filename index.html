@@ -28,15 +28,15 @@
   <meta name="description" content="Adriano Libranti — Creative Strategist. Storytelling, copywriting, design, UX e linguaggio cinematografico al servizio dei brand.">
 
   <!-- ===========================================================
-       FONT: Courier Prime (monospace da sceneggiatura/macchina da
-       scrivere, per i titoli grandi ed editoriali) + Inter (sans,
-       per testi e UI). Se vuoi cambiare i font basta sostituire
-       questo link e le variabili --font-display / --font-body in
-       assets/css/style.css
+       FONT: Anton (sans-serif condensato molto pesante, stile
+       "poster cinematografico", per i titoli grandi) + Courier Prime
+       (monospace da sceneggiatura/macchina da scrivere, per testi e
+       UI). Se vuoi cambiare i font basta sostituire questo link e le
+       variabili --font-display / --font-body in assets/css/style.css
   =========================================================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -95,7 +95,7 @@
 
     <nav class="site-header__nav">
       <a href="#servizi" data-cursor-text="Vai">Cosa faccio</a>
-      <a href="#lavori" data-cursor-text="Vai">Lavori</a>
+      <a href="#lavori" data-cursor-text="Vai">Portfolio</a>
       <a href="#chi-sono" data-cursor-text="Vai">Chi sono</a>
       <a href="#contatti" data-cursor-text="Vai">Contatti</a>
     </nav>
@@ -154,7 +154,7 @@
           limitano a comunicare: fanno sentire qualcosa.
         </p>
         <a href="#contatti" class="link-arrow" data-cursor-text="Vai">
-          Parliamo del tuo progetto →
+          Parliamo del tuo progetto
         </a>
       </div>
     </section>
@@ -173,30 +173,24 @@
       <p class="section-label reveal">— Cosa faccio</p>
 
       <ul class="services__list">
-        <li class="services__row reveal" data-preview="01">
-          <span class="services__index">01</span>
-          <span class="services__name">Storytelling</span>
-          <span class="services__desc">Narrazioni che danno senso e direzione a un brand.</span>
+        <!-- Tutte e tre le righe sono collegate alla pagina dedicata. -->
+        <li>
+          <a href="brand-comunicazione.html" class="services__row reveal" data-preview="01" data-cursor-text="Vai">
+            <span class="services__name">Brand e comunicazione</span>
+            <span class="services__desc">Identità, tono di voce e strategia per brand che sanno raccontarsi.</span>
+          </a>
         </li>
-        <li class="services__row reveal" data-preview="02">
-          <span class="services__index">02</span>
-          <span class="services__name">Copywriting</span>
-          <span class="services__desc">Parole pensate per convertire, restare impresse, suonare vere.</span>
+        <li>
+          <a href="eventi.html" class="services__row reveal" data-preview="02" data-cursor-text="Vai">
+            <span class="services__name">Eventi</span>
+            <span class="services__desc">Format ed esperienze dal vivo pensate per lasciare il segno.</span>
+          </a>
         </li>
-        <li class="services__row reveal" data-preview="03">
-          <span class="services__index">03</span>
-          <span class="services__name">Design</span>
-          <span class="services__desc">Identità visive che traducono un'idea in immagine.</span>
-        </li>
-        <li class="services__row reveal" data-preview="04">
-          <span class="services__index">04</span>
-          <span class="services__name">UX</span>
-          <span class="services__desc">Esperienze digitali fluide, intuitive, centrate sulle persone.</span>
-        </li>
-        <li class="services__row reveal" data-preview="05">
-          <span class="services__index">05</span>
-          <span class="services__name">Cinema</span>
-          <span class="services__desc">Linguaggio visivo e montaggio per raccontare per immagini.</span>
+        <li>
+          <a href="progetti-personali.html" class="services__row reveal" data-preview="03" data-cursor-text="Vai">
+            <span class="services__name">Corti</span>
+            <span class="services__desc">Linguaggio visivo e montaggio per raccontare per immagini.</span>
+          </a>
         </li>
       </ul>
 
@@ -206,32 +200,56 @@
 
     <!-- ===========================================================
          LAVORI (teaser)
-         Sezione ponte in attesa del portfolio progetti completo,
-         che costruiremo in una pagina/sezione dedicata più avanti.
-         MODIFICA QUI quando avrai i primi case study da mostrare:
-         basta sostituire ogni .work-card con un vero progetto
-         (immagine, titolo, categoria, link).
+         Non sono semplici card ma due grandi pulsanti che dividono a
+         metà lo spazio della sezione: sono i link alle due pagine
+         principali del portfolio. "Lavori" porta a lavori.html (già
+         pronta, smista tra Brand e comunicazione ed Eventi).
+         MODIFICA QUI: quando costruisci la pagina "Progetti
+         personali", sostituisci il suo href="#" con il file vero.
     =========================================================== -->
     <section class="work" id="lavori">
-      <p class="section-label reveal">— Lavori selezionati</p>
-      <h2 class="work__title reveal" data-cursor="text">I progetti arrivano presto.</h2>
-      <p class="work__intro reveal">
-        Sto preparando una selezione dei lavori più significativi.
-        Nel frattempo scrivimi: ti mostro volentieri il portfolio completo.
-      </p>
+      <p class="section-label reveal">— Portfolio</p>
+      <h2 class="work__title reveal" data-cursor="text"></h2>
+      
 
       <div class="work__grid">
-        <div class="work-card reveal" data-preview="a">
-          <span class="work-card__number">Progetto 01</span>
-          <span class="work-card__tag">Prossimamente</span>
-        </div>
-        <div class="work-card reveal" data-preview="b">
-          <span class="work-card__number">Progetto 02</span>
-          <span class="work-card__tag">Prossimamente</span>
-        </div>
-        <div class="work-card reveal" data-preview="c">
-          <span class="work-card__number">Progetto 03</span>
-          <span class="work-card__tag">Prossimamente</span>
+        <a href="lavori.html" class="work-card reveal" data-cursor-text="Vai">
+          <span class="work-card__title">Lavori</span>
+        </a>
+        <a href="progetti-personali.html" class="work-card reveal" data-cursor-text="Vai">
+          <span class="work-card__title">Progetti personali</span>
+        </a>
+      </div>
+
+      <!-- ===========================================================
+           CAROSELLO LOGHI CLIENTI
+           Striscia che scorre all'infinito sotto i due pulsanti. Per
+           ora testo segnaposto — MODIFICA QUI: sostituisci ogni
+           <span class="logo-item">Testo</span> con
+           <span class="logo-item"><img src="assets/img/loghi/nome.png" alt="Nome cliente"></span>
+           quando avrai i loghi veri. Il contenuto va aggiornato in
+           ENTRAMBI i .logos-carousel__group qui sotto (sono la stessa
+           lista ripetuta due volte, serve per il loop senza scatti).
+      =========================================================== -->
+      <div class="logos-carousel reveal">
+        <div class="logos-carousel__track">
+          <div class="logos-carousel__group">
+            <span class="logo-item">Cliente 01</span>
+            <span class="logo-item">Cliente 02</span>
+            <span class="logo-item">Cliente 03</span>
+            <span class="logo-item">Cliente 04</span>
+            <span class="logo-item">Cliente 05</span>
+            <span class="logo-item">Cliente 06</span>
+          </div>
+          <!-- duplicato identico, nascosto agli screen reader per non far ripetere i nomi -->
+          <div class="logos-carousel__group" aria-hidden="true">
+            <span class="logo-item">Cliente 01</span>
+            <span class="logo-item">Cliente 02</span>
+            <span class="logo-item">Cliente 03</span>
+            <span class="logo-item">Cliente 04</span>
+            <span class="logo-item">Cliente 05</span>
+            <span class="logo-item">Cliente 06</span>
+          </div>
         </div>
       </div>
     </section>
@@ -270,7 +288,7 @@
       <!-- MODIFICA QUI: sostituisci "#" con i tuoi profili reali -->
       <a href="#" data-cursor-text="Vai">LinkedIn</a>
       <a href="#" data-cursor-text="Vai">Instagram</a>
-      <a href="#" data-cursor-text="Vai">Behance</a>
+      <a href="#" data-cursor-text="Vai">Facebook</a>
     </div>
 
     <div class="contact__meta">

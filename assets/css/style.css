@@ -16,8 +16,11 @@
    11. LAVORI (teaser)
    12. QUOTE
    13. CONTATTI / FOOTER
-   14. RESPONSIVE (mobile/tablet)
-   15. ACCESSIBILITÀ (riduzione animazioni)
+   14. PAGINA LAVORI (lavori.html, i due pulsanti a schermo intero)
+   15. PAGINE PROGETTI (brand-comunicazione.html, eventi.html)
+   16. PAGINA PROGETTI PERSONALI (progetti-personali.html, a strisce)
+   17. RESPONSIVE (mobile/tablet)
+   18. ACCESSIBILITÀ (riduzione animazioni)
    ================================================================= */
 
 
@@ -34,17 +37,20 @@
   --color-bg-alt: #111113;      /* sfondo leggermente diverso (sezioni alternate) */
   --color-text: #f4f1ea;        /* testo principale, bianco caldo */
   --color-text-dim: #9a968d;    /* testo secondario / grigio caldo */
-  --color-accent: #c9a876;      /* oro/ambra — dettagli, hover, accenti "cinema" */
+  --color-accent: #e86a33;      /* arancio bruciato — dettagli, hover, accenti "cinema" */
   --color-line: rgba(244, 241, 234, 0.14); /* linee divisorie sottili */
 
   /* Font.
-     - Display: titoli grandi, editoriali → Courier Prime (monospace
-       da sceneggiatura/macchina da scrivere — lo stesso font usato
-       negli script cinematografici professionali)
-     - Body: testo corrente, UI → Inter (sans)
-     MODIFICA QUI se cambi i font nel tag <link> di index.html */
-  --font-display: "Courier Prime", "Courier New", monospace;
-  --font-body: "Inter", -apple-system, sans-serif;
+     - Display: titoli grandi → Anton, sans-serif condensato molto
+       pesante, stile "poster cinematografico" (ha un solo peso,
+       già di suo pesantissimo: non serve font-weight: bold)
+     - Body: testo corrente, UI → Courier Prime (monospace da
+       sceneggiatura/macchina da scrivere)
+     MODIFICA QUI se cambi i font nei tag <link> di index.html,
+     lavori.html e brand-comunicazione.html (tutte e 3 le pagine
+     caricano gli stessi font, vanno aggiornate insieme) */
+  --font-display: "Anton", "Arial Narrow Bold", sans-serif;
+  --font-body: "Courier Prime", "Courier New", monospace;
 
   /* Spaziature sezione: distanza verticale tra i blocchi principali */
   --section-padding: clamp(5rem, 12vw, 10rem);
@@ -71,7 +77,7 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
-  font-weight: 300;
+  font-weight: 400; /* Courier Prime carica solo 400/700, niente 300 */
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -110,11 +116,12 @@ section { position: relative; }
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-text-dim);
+  color: var(--color-accent); /* più colore in giro: ogni etichetta di sezione è ora accentata */
   margin: 0 0 2rem;
 }
 
-/* Link con freccia, usato per le call to action testuali */
+/* Link sottolineato, usato per le call to action testuali
+   (il nome della classe è storico: non ha più una freccia) */
 .link-arrow {
   display: inline-block;
   margin-top: 1.5rem;
@@ -253,7 +260,7 @@ section { position: relative; }
    mix-blend-mode: difference (vedi ".cursor" più sopra), un colore
    identico a quello del testo sotto produce nero — è per questo che
    il testo "sparisce" diventando nero al passaggio del caret, sia
-   che sia bianco (--color-text) sia che sia oro (--color-accent). */
+   che sia bianco (--color-text) sia che sia arancio (--color-accent). */
 .cursor__caret {
   position: fixed;
   width: calc(var(--caret-size, 48px) * 0.22);
@@ -361,12 +368,13 @@ body.is-scrolled .site-header {
 .site-header__nav a:hover::after { width: 100%; }
 
 .site-header__cta {
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-accent); /* bordo accentato sempre visibile, non solo in hover */
   border-radius: 999px;
   padding: 0.5rem 1.1rem;
-  transition: border-color var(--duration) var(--ease), color var(--duration) var(--ease);
+  transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease);
 }
-.site-header__cta:hover { border-color: var(--color-accent); color: var(--color-accent); }
+/* Hover: si riempie di colore invece di limitarsi a schiarire il bordo */
+.site-header__cta:hover { background-color: var(--color-accent); color: var(--color-bg); }
 
 
 /* -----------------------------------------------------------------
@@ -385,7 +393,7 @@ body.is-scrolled .site-header {
   font-size: 0.85rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-text-dim);
+  color: var(--color-accent);
   margin-bottom: 1.5rem;
 }
 
@@ -453,13 +461,6 @@ body.is-scrolled .site-header {
 .services__row:first-child { border-top: 1px solid var(--color-line); }
 .services__row:hover { padding-left: 1rem; }
 
-.services__index {
-  font-size: 0.85rem;
-  color: var(--color-text-dim);
-  width: 2ch;
-  flex-shrink: 0;
-}
-
 .services__name {
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 3.4vw, 2.2rem);
@@ -479,7 +480,7 @@ body.is-scrolled .site-header {
    passa sopra una riga di servizio. Il colore/gradiente cambia
    in base a data-preview (vedi le classi .preview--01 ecc. sotto).
    MODIFICA QUI: sostituisci i gradienti con vere immagini, es.
-   .preview--01 { background-image: url("../img/storytelling.jpg"); } */
+   .preview--01 { background-image: url("../img/brand.jpg"); } */
 .hover-preview {
   position: fixed;
   top: 0;
@@ -500,14 +501,12 @@ body.is-scrolled .site-header {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
-.hover-preview.preview--01 { background-image: linear-gradient(135deg, #2b2620, #c9a876); }
+.hover-preview.preview--01 { background-image: linear-gradient(135deg, #2b2620, var(--color-accent)); }
 .hover-preview.preview--02 { background-image: linear-gradient(135deg, #1c1c1e, #6f6a5f); }
-.hover-preview.preview--03 { background-image: linear-gradient(135deg, #3a2f28, #e8ddc7); }
-.hover-preview.preview--04 { background-image: linear-gradient(135deg, #14181c, #8a97a3); }
-.hover-preview.preview--05 { background-image: linear-gradient(135deg, #050505, #4a3f2f); }
-.hover-preview.preview--a { background-image: linear-gradient(135deg, #23201c, #a68a5b); }
-.hover-preview.preview--b { background-image: linear-gradient(135deg, #1a1a1c, #7d7466); }
-.hover-preview.preview--c { background-image: linear-gradient(135deg, #201c16, #cbb083); }
+.hover-preview.preview--03 { background-image: linear-gradient(135deg, #3a2f28, #e0a888); }
+/* Non serve una preview--a/--b: i due pulsanti della sezione LAVORI
+   qui sotto mostrano il loro sfondo direttamente, non serve un
+   riquadro fantasma che lo duplichi al passaggio del mouse. */
 
 
 /* -----------------------------------------------------------------
@@ -528,47 +527,97 @@ body.is-scrolled .site-header {
   color: var(--color-text-dim);
 }
 
+/* Non una griglia di "card" ma due pulsanti che dividono a metà lo
+   spazio della sezione, edge-to-edge (nessun max-width, nessun gap:
+   riempiono tutta la larghezza disponibile). MODIFICA QUI se in
+   futuro vuoi più di 2 pagine: aggiungi un altro <a class="work-card">
+   in index.html e cambia "repeat(2, 1fr)" in "repeat(3, 1fr)" ecc. */
 .work__grid {
   margin-top: 3.5rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .work-card {
-  aspect-ratio: 4 / 5;
-  border-radius: 4px;
-  border: 1px solid var(--color-line);
+  min-height: clamp(22rem, 38vw, 32rem); /* pulsante grande, non una piccola card */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   position: relative;
   overflow: hidden;
-  transition: transform var(--duration) var(--ease);
+  transition: filter var(--duration) var(--ease);
 }
-/* Sfondo sfumato placeholder, riusa gli stessi colori delle preview servizi.
-   MODIFICA QUI quando avrai le immagini reali dei progetti:
-   sostituisci con background-image: url(...) su ciascuna .work-card. */
-.work-card[data-preview="a"] { background: linear-gradient(160deg, #1a1712, #23201c 60%); }
-.work-card[data-preview="b"] { background: linear-gradient(160deg, #131313, #1a1a1c 60%); }
-.work-card[data-preview="c"] { background: linear-gradient(160deg, #17130e, #201c16 60%); }
-.work-card:hover { transform: translateY(-6px); }
+/* Linea sottile a dividere visivamente i due pulsanti */
+.work-card + .work-card {
+  border-left: 1px solid var(--color-line);
+}
+/* Sfondo sfumato placeholder — un colore diverso per pulsante, così
+   restano distinguibili. MODIFICA QUI quando avrai un'immagine reale
+   per "Lavori" e per "Progetti personali": sostituisci il gradiente
+   con background-image: url(...) sul relativo :nth-child(). */
+.work-card:nth-child(1) { background: linear-gradient(160deg, #1a1712, #23201c 60%); }
+.work-card:nth-child(2) { background: linear-gradient(160deg, #131313, #1a1a1c 60%); }
+.work-card:hover { filter: brightness(1.2); }
 
-.work-card__number {
+.work-card__title {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
   color: var(--color-text);
+  transition: color var(--duration) var(--ease);
 }
-.work-card__tag {
-  align-self: flex-start;
-  font-size: 0.7rem;
+.work-card:hover .work-card__title { color: var(--color-accent); }
+
+/* ---- Carosello loghi clienti ----
+   Striscia che scorre all'infinito sotto i due pulsanti. Stesso
+   trucco della vecchia marquee: il contenuto è duplicato in due
+   ".logos-carousel__group" nell'HTML e la traslazione va da 0 a
+   -50%, così il loop non si vede. In pausa al passaggio del mouse,
+   per poter leggere/vedere con calma un logo.
+   MODIFICA QUI: quando avrai i loghi veri, in index.html sostituisci
+   ogni <span class="logo-item">Testo</span> con
+   <span class="logo-item"><img src="assets/img/loghi/nome.png" alt="Nome cliente"></span>
+   — le dimensioni dell'immagine sono già gestite qui sotto. */
+.logos-carousel {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--color-line);
+  overflow: hidden;
+}
+.logos-carousel__track {
+  display: flex;
+  width: max-content;
+  animation: logosScroll 32s linear infinite;
+}
+.logos-carousel:hover .logos-carousel__track { animation-play-state: paused; }
+.logos-carousel__group { display: flex; align-items: center; }
+
+.logo-item {
+  flex-shrink: 0;
+  padding: 0 3rem;
+  font-size: 0.85rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-text-dim);
-  border: 1px solid var(--color-line);
-  border-radius: 999px;
-  padding: 0.3rem 0.7rem;
+  white-space: nowrap;
+  opacity: 0.6;
+  transition: opacity var(--duration) var(--ease), color var(--duration) var(--ease);
+}
+.logo-item:hover { opacity: 1; color: var(--color-text); }
+/* Quando un logo-item conterrà un'immagine invece di testo */
+.logo-item img {
+  height: 28px;
+  width: auto;
+  filter: grayscale(1) brightness(1.6); /* logo in scala di grigi, si "accende" in hover */
+  opacity: 0.6;
+  transition: opacity var(--duration) var(--ease), filter var(--duration) var(--ease);
+}
+.logo-item:hover img { opacity: 1; filter: grayscale(0) brightness(1); }
+
+@keyframes logosScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 
@@ -596,7 +645,7 @@ body.is-scrolled .site-header {
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-text-dim);
+  color: var(--color-accent);
 }
 
 
@@ -648,7 +697,226 @@ body.is-scrolled .site-header {
 
 
 /* -----------------------------------------------------------------
-   14. RESPONSIVE
+   14. PAGINA LAVORI (lavori.html) — due pulsanti a schermo intero
+   Riusa esattamente gli stessi .work-card della sezione "Portfolio"
+   in homepage (stesso linguaggio visivo), ma qui riempiono quasi
+   tutta l'altezza della pagina invece di una porzione di sezione:
+   .lavori-page è un contenitore flex verticale alto quanto lo
+   schermo, e la griglia dei due pulsanti (unico contenuto della
+   sezione, nessuna intestazione) occupa tutto lo spazio (flex: 1).
+----------------------------------------------------------------- */
+.lavori-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 6rem; /* spazio per non finire sotto l'header fisso */
+}
+
+/* Modificatore da aggiungere a .work__grid quando i pulsanti devono
+   riempire tutta l'altezza disponibile (pagina dedicata) invece che
+   una semplice sezione della homepage. */
+.work__grid--full {
+  flex: 1;
+  height: 100%;
+  grid-template-rows: 1fr;
+}
+.work__grid--full .work-card {
+  min-height: 0; /* qui l'altezza arriva dal contenitore, non serve un minimo fisso */
+  height: 100%;
+}
+
+
+/* -----------------------------------------------------------------
+   15. PAGINE PROGETTI (brand-comunicazione.html, eventi.html)
+   Componente condiviso dalle pagine "elenco progetti" di ogni
+   ambito. Due parti:
+   a) .word-pattern — lo sfondo particolare: le parole di quell'ambito
+      (in brand-comunicazione.html: UX, UI, Copywriting...; in
+      eventi.html: Fotografia, Filmmaking) scorrono su righe alternate
+      dietro al contenuto, come una "carta da parati" cinetica. Fisso
+      a schermo, z-index basso con main/footer esplicitamente sopra
+      (vedi sotto), leggermente ruotato per un effetto poster. Stesso
+      trucco della vecchia marquee: il contenuto è ripetuto due volte
+      nell'HTML e la traslazione va da 0 a -50%, quindi il loop non
+      si vede.
+   b) .projects-grid / .project-card — un pulsante per progetto,
+      stesso linguaggio visivo dei .work-card (sfondo sfumato,
+      titolo in Courier Prime) ma più piccoli e in griglia, pensati
+      per un elenco che crescerà nel tempo.
+
+   MODIFICA QUI: per una nuova pagina "elenco progetti" (es. per
+   "Cinema"), copia eventi.html, cambia le parole nel .word-pattern
+   e i contenuti di .projects-grid — non serve toccare questo CSS.
+----------------------------------------------------------------- */
+.word-pattern {
+  position: fixed;
+  inset: -10%; /* leggermente più grande dello schermo, così la rotazione non lascia angoli vuoti */
+  /* z-index basso ma NON negativo: gli z-index negativi su elementi
+     "fixed" sono poco affidabili (in alcuni browser finiscono dietro
+     allo sfondo della pagina invece che sopra, diventando invisibili).
+     Qui il pattern sta a 0 e il contenuto vero (main/footer, vedi
+     sotto) sta esplicitamente a 1: ordine garantito, niente trucchi. */
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  transform: rotate(-4deg);
+  overflow: hidden;
+  pointer-events: none;
+}
+/* Il contenuto vero della pagina deve stare sopra al pattern.
+   Selettore "~" = si applica solo alle pagine che hanno davvero un
+   .word-pattern come fratello precedente (qui, solo brand-comunicazione.html). */
+.word-pattern ~ main,
+.word-pattern ~ footer {
+  position: relative;
+  z-index: 1;
+}
+
+.word-pattern__track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5.4vw, 4rem);
+  color: var(--color-line); /* tenue: è uno sfondo, non deve competere col contenuto */
+  animation: wordScroll 44s linear infinite;
+}
+.word-pattern__track span {
+  padding: 0 1.5rem;
+}
+/* Righe alterne che scorrono in direzione opposta, per un effetto
+   meno meccanico. MODIFICA QUI: per aggiungere altre righe al
+   pattern, duplica un blocco .word-pattern__row in brand-comunicazione.html
+   — l'alternanza di direzione si applica da sola, non serve
+   toccare il CSS. */
+.word-pattern__row:nth-child(even) .word-pattern__track {
+  animation-name: wordScrollReverse;
+  animation-duration: 34s;
+}
+@keyframes wordScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes wordScrollReverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+/* ---- Griglia progetti ---- */
+/* Nessuna intestazione sopra: solo i pulsanti-progetto. Il
+   padding-top serve a non finire sotto l'header fisso. */
+.projects {
+  padding: 11rem var(--side-padding) var(--section-padding);
+}
+.projects-grid {
+  display: grid;
+  /* auto-fit + minmax: si adatta da solo al numero di progetti,
+     nessun calcolo manuale di colonne quando ne aggiungi/togli */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+/* Sfondo sfumato placeholder, uguale per tutte le card (per ora).
+   MODIFICA QUI quando avrai le immagini reali dei progetti:
+   sostituisci con background-image: url(...) su ciascuna .project-card,
+   magari una tinta diversa per progetto per distinguerle a colpo d'occhio. */
+.project-card {
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, #1a1712, #23201c 65%);
+  transition: filter var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+.project-card:hover {
+  filter: brightness(1.2);
+  transform: translateY(-4px);
+}
+.project-card__tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.project-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+  color: var(--color-text);
+  transition: color var(--duration) var(--ease);
+}
+.project-card:hover .project-card__title { color: var(--color-accent); }
+
+
+/* -----------------------------------------------------------------
+   16. PAGINA PROGETTI PERSONALI (progetti-personali.html)
+   Stile volutamente diverso dalle altre due pagine "elenco progetti":
+   niente card in griglia, ma una striscia a tutta larghezza per ogni
+   progetto, con una vera anteprima accanto al testo (non più solo il
+   riquadro fantasma che segue il cursore). Le strisce si alternano:
+   dispari = testo a sinistra / anteprima a destra, pari = anteprima
+   a sinistra / testo a destra — tramite "order" sui due blocchi,
+   senza dover scrivere due markup diversi in HTML.
+----------------------------------------------------------------- */
+.strip-list {
+  padding: 8rem var(--side-padding) var(--section-padding);
+}
+
+.project-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--color-line);
+  transition: padding-left var(--duration) var(--ease);
+}
+.project-strip:first-child { border-top: 1px solid var(--color-line); }
+.project-strip:hover { padding-left: 1rem; }
+
+/* Ordine di base: testo (1) poi anteprima (2) → testo a sinistra.
+   MODIFICA QUI se preferisci partire con l'anteprima a sinistra:
+   basta scambiare gli "order" qui sotto e nel :nth-child(even). */
+.project-strip__body { order: 1; }
+.project-strip__preview { order: 2; }
+/* Righe pari: layout invertito (anteprima a sinistra, testo a destra) */
+.project-strip:nth-child(even) .project-strip__body { order: 2; }
+.project-strip:nth-child(even) .project-strip__preview { order: 1; }
+
+/* Sfondo sfumato placeholder. MODIFICA QUI quando avrai le immagini
+   reali dei progetti: sostituisci con background-image: url(...)
+   su ciascuna .project-strip__preview (o sul relativo :nth-child()). */
+.project-strip__preview {
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  background: linear-gradient(160deg, #1a1712, #23201c 65%);
+  transition: transform var(--duration) var(--ease);
+}
+.project-strip:nth-child(even) .project-strip__preview { background: linear-gradient(160deg, #131313, #1a1a1c 60%); }
+.project-strip:nth-child(3) .project-strip__preview { background: linear-gradient(160deg, #17130e, #201c16 60%); }
+.project-strip:hover .project-strip__preview { transform: scale(1.03); }
+
+.project-strip__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem); /* più piccolo di prima: ora condivide lo spazio con l'anteprima */
+  color: var(--color-text);
+  transition: color var(--duration) var(--ease);
+}
+.project-strip:hover .project-strip__title { color: var(--color-accent); }
+
+.project-strip__desc {
+  margin-top: 0.75rem;
+  max-width: 40ch;
+  color: var(--color-text-dim);
+}
+
+
+/* -----------------------------------------------------------------
+   17. RESPONSIVE
 ----------------------------------------------------------------- */
 
 /* Nascondi il cursore custom e ripristina quello di sistema sui
@@ -665,18 +933,32 @@ body.is-scrolled .site-header {
 
   .hover-preview { display: none; } /* l'anteprima al hover non serve su schermi piccoli/touch */
 
-  .work__grid { grid-template-columns: 1fr; }
+  .work__grid { grid-template-columns: 1fr; } /* i 2 pulsanti si impilano invece di dividersi in colonne */
+  .work-card + .work-card { border-left: none; border-top: 1px solid var(--color-line); }
+  /* Impilati, i due pulsanti a schermo intero (lavori.html) tornano
+     ad avere ciascuno un'altezza minima invece di dividersi un'unica riga */
+  .work__grid--full { grid-template-rows: none; }
+  .work__grid--full .work-card { height: auto; min-height: 16rem; }
 
   .contact__meta { flex-direction: column; gap: 0.75rem; text-align: center; }
+
+  /* Le strisce progetto vanno in colonna (anteprima sopra, testo
+     sotto) invece che affiancate, e l'alternanza sinistra/destra
+     non ha più senso su schermi stretti: la disattiviamo. */
+  .project-strip { grid-template-columns: 1fr; gap: 1.25rem; }
+  .project-strip__body,
+  .project-strip:nth-child(even) .project-strip__body { order: 2; }
+  .project-strip__preview,
+  .project-strip:nth-child(even) .project-strip__preview { order: 1; }
 }
 
 
 /* -----------------------------------------------------------------
-   15. ACCESSIBILITÀ — rispetta chi preferisce meno animazioni
+   18. ACCESSIBILITÀ — rispetta chi preferisce meno animazioni
 ----------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal, .preloader, .work-card, .cursor__caret {
+  .reveal, .preloader, .work-card, .cursor__caret, .project-card, .word-pattern__track, .logos-carousel__track {
     animation: none !important;
     transition: none !important;
   }

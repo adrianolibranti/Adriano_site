@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--
+  =============================================================
+  SITO PORTFOLIO — ADRIANO LIBRANTI
+  Pagina "Brand e comunicazione" — elenco progetti
+  =============================================================
+  Si apre dal pulsante "Brand e comunicazione" in lavori.html e
+  dalla riga omonima nella sezione "Cosa faccio" della homepage.
+
+  Contiene un pulsante per ogni progetto (griglia .projects-grid),
+  facilmente duplicabile: copia un blocco .project-card, cambia
+  titolo/tag/href. Lo sfondo è un pattern tipografico con le parole
+  di tutto ciò che rientra in "Brand e comunicazione" (UX, UI,
+  Copywriting, Identità visiva, Social, Web, Filmmaking), che scorre
+  lentamente dietro al contenuto — vedi .word-pattern in style.css,
+  sezione "15. PAGINA BRAND E COMUNICAZIONE".
+-->
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand e comunicazione — Adriano Libranti</title>
+  <meta name="description" content="Adriano Libranti — Progetti di brand e comunicazione: UX, UI, copywriting, identità visiva, social, web, filmmaking.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body id="top">
+
+  <!-- CURSORE PERSONALIZZATO — identico a index.html, vedi lì i commenti -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__dot" id="cursorDot"></div>
+    <div class="cursor__ring" id="cursorRing">
+      <span class="cursor__label" id="cursorLabel"></span>
+    </div>
+    <div class="cursor__caret" id="cursorCaret"></div>
+  </div>
+
+  <!-- Texture "grana pellicola", identica a index.html -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ===========================================================
+       PATTERN DI SFONDO — le discipline di "Brand e comunicazione"
+       che scorrono su più righe, alternate a coppie in direzione
+       opposta, dietro al contenuto. Puro decoro (aria-hidden).
+       MODIFICA QUI:
+       - le singole parole: sono ripetute due volte per riga per un
+         loop senza scatti — se le cambi, aggiornale in entrambe le
+         metà della riga.
+       - il numero di righe: per aggiungerne/toglierne, copia o
+         rimuovi un blocco .word-pattern__row intero — l'alternanza
+         di direzione (vedi style.css) si applica da sola.
+  =========================================================== -->
+  <div class="word-pattern" aria-hidden="true">
+    <div class="word-pattern__row">
+      <div class="word-pattern__track">
+        <span>UX</span><span>UI</span><span>Copywriting</span><span>Identità visiva</span><span>Social</span><span>Web</span><span>Filmmaking</span>
+        <span>UX</span><span>UI</span><span>Copywriting</span><span>Identità visiva</span><span>Social</span><span>Web</span><span>Filmmaking</span>
+      </div>
+    </div>
+    <div class="word-pattern__row">
+      <div class="word-pattern__track">
+        <span>UX</span><span>UI</span><span>Copywriting</span><span>Identità visiva</span><span>Social</span><span>Web</span><span>Filmmaking</span>
+        <span>UX</span><span>UI</span><span>Copywriting</span><span>Identità visiva</span><span>Social</span><span>Web</span><span>Filmmaking</span>
+      </div>
+    </div>
+    <div class="word-pattern__row">
+      <div class="word-pattern__track">
+        <span>UX</span><span>UI</span><span>Copywriting</span><span>Identità visiva</span><span>Social</span><span>Web</span><span>Filmmaking</span>
+        <span>UX</span><span>UI</span><span>Copywriting</span><span>Identità visiva</span><span>Social</span><span>Web</span><span>Filmmaking</span>
+      </div>
+    </div>
+    <div class="word-pattern__row">
+      <div class="word-pattern__track">
+        <span>UX</span><span>UI</span><span>Copywriting</span><span>Identità visiva</span><span>Social</span><span>Web</span><span>Filmmaking</span>
+        <span>UX</span><span>UI</span><span>Copywriting</span><span>Identità visiva</span><span>Social</span><span>Web</span><span>Filmmaking</span>
+      </div>
+    </div>
+    <div class="word-pattern__row">
+      <div class="word-pattern__track">
+        <span>UX</span><span>UI</span><span>Copywriting</span><span>Identità visiva</span><span>Social</span><span>Web</span><span>Filmmaking</span>
+        <span>UX</span><span>UI</span><span>Copywriting</span><span>Identità visiva</span><span>Social</span><span>Web</span><span>Filmmaking</span>
+      </div>
+    </div>
+    <div class="word-pattern__row">
+      <div class="word-pattern__track">
+        <span>UX</span><span>UI</span><span>Copywriting</span><span>Identità visiva</span><span>Social</span><span>Web</span><span>Filmmaking</span>
+        <span>UX</span><span>UI</span><span>Copywriting</span><span>Identità visiva</span><span>Social</span><span>Web</span><span>Filmmaking</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===========================================================
+       HEADER / NAVIGAZIONE — uguale al resto del sito, con i link
+       che puntano a "index.html#..." essendo una pagina diversa.
+  =========================================================== -->
+  <header class="site-header">
+    <a href="index.html" class="site-header__logo" data-cursor-text="Home">
+      <img src="assets/img/logo.png" alt="Adriano Libranti">
+    </a>
+
+    <nav class="site-header__nav">
+      <a href="index.html#servizi" data-cursor-text="Vai">Cosa faccio</a>
+      <a href="index.html#lavori" data-cursor-text="Vai">Portfolio</a>
+      <a href="index.html#chi-sono" data-cursor-text="Vai">Chi sono</a>
+      <a href="index.html#contatti" data-cursor-text="Vai">Contatti</a>
+    </nav>
+
+    <a href="mailto:librantiadriano@gmail.com" class="site-header__cta" data-cursor-text="Scrivi">
+      Scrivimi
+    </a>
+  </header>
+
+  <main>
+
+    <!-- ===========================================================
+         GRIGLIA PROGETTI
+         Un pulsante per progetto. MODIFICA QUI: per aggiungerne uno
+         nuovo, copia un intero blocco <a class="project-card">...</a>
+         e cambia titolo, tag e href (verso la pagina/case study del
+         progetto, quando esisterà). Il layout si adatta da solo:
+         aggiungendo o togliendo card la griglia si ridispone.
+    =========================================================== -->
+    <section class="projects">
+      <div class="projects-grid">
+        <a href="#" class="project-card reveal" data-cursor-text="Vai">
+          <span class="project-card__tag">Prossimamente</span>
+          <span class="project-card__title">Progetto 01</span>
+        </a>
+        <a href="#" class="project-card reveal" data-cursor-text="Vai">
+          <span class="project-card__tag">Prossimamente</span>
+          <span class="project-card__title">Progetto 02</span>
+        </a>
+        <a href="#" class="project-card reveal" data-cursor-text="Vai">
+          <span class="project-card__tag">Prossimamente</span>
+          <span class="project-card__title">Progetto 03</span>
+        </a>
+        <a href="#" class="project-card reveal" data-cursor-text="Vai">
+          <span class="project-card__tag">Prossimamente</span>
+          <span class="project-card__title">Progetto 04</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER — versione ridotta come in lavori.html: niente
+       intestazione "— Parliamo", solo email, social e riga finale. -->
+  <footer class="contact" id="contatti">
+    <a href="mailto:librantiadriano@gmail.com" class="contact__email reveal" data-cursor-text="Scrivi">
+      librantiadriano@gmail.com
+    </a>
+
+    <div class="contact__socials reveal">
+      <a href="#" data-cursor-text="Vai">LinkedIn</a>
+      <a href="#" data-cursor-text="Vai">Instagram</a>
+      <a href="#" data-cursor-text="Vai">Facebook</a>
+    </div>
+
+    <div class="contact__meta">
+      <span>© <span id="year"></span> Adriano Libranti — Creative Strategist</span>
+      <a href="#top" data-cursor-text="Su">Torna su ↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

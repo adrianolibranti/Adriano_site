@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+  =============================================================
+  SITO PORTFOLIO — ADRIANO LIBRANTI
+  Pagina "Lavori" — smistamento tra i due ambiti del portfolio
+  =============================================================
+  Si apre cliccando il pulsante "Lavori" in homepage (sezione
+  Portfolio). Contiene due enormi pulsanti che dividono la pagina
+  a metà: "Brand e comunicazione" (brand-comunicazione.html) ed
+  "Eventi" (eventi.html) — entrambe già collegate.
+
+  Usa Stessa struttura/stile della homepage (index.html): stesso
+  CSS/JS, stesso header e footer, così il sito resta coerente.
+-->
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lavori — Adriano Libranti</title>
+  <meta name="description" content="Adriano Libranti — Lavori. Brand e comunicazione, ed eventi: due ambiti, uno sguardo da creative strategist.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body id="top">
+
+  <!-- Niente preloader su questa pagina: è pensato solo per il primo
+       impatto in homepage. Se lo vuoi anche qui, copia il blocco
+       .preloader da index.html. -->
+
+  <!-- CURSORE PERSONALIZZATO — identico a index.html, vedi lì i commenti -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__dot" id="cursorDot"></div>
+    <div class="cursor__ring" id="cursorRing">
+      <span class="cursor__label" id="cursorLabel"></span>
+    </div>
+    <div class="cursor__caret" id="cursorCaret"></div>
+  </div>
+
+  <!-- Texture "grana pellicola", identica a index.html -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ===========================================================
+       HEADER / NAVIGAZIONE
+       Uguale a quello della homepage, ma essendo una pagina diversa
+       le voci del menu puntano a "index.html#..." invece che "#...".
+  =========================================================== -->
+  <header class="site-header">
+    <a href="index.html" class="site-header__logo" data-cursor-text="Home">
+      <img src="assets/img/logo.png" alt="Adriano Libranti">
+    </a>
+
+    <nav class="site-header__nav">
+      <a href="index.html#servizi" data-cursor-text="Vai">Cosa faccio</a>
+      <a href="index.html#lavori" data-cursor-text="Vai">Portfolio</a>
+      <a href="index.html#chi-sono" data-cursor-text="Vai">Chi sono</a>
+      <a href="index.html#contatti" data-cursor-text="Vai">Contatti</a>
+    </nav>
+
+    <a href="mailto:librantiadriano@gmail.com" class="site-header__cta" data-cursor-text="Scrivi">
+      Scrivimi
+    </a>
+  </header>
+
+  <main>
+
+    <!-- ===========================================================
+         LAVORI — solo i due pulsanti, a schermo intero, senza
+         nessun'altra intestazione. .lavori-page è alto quanto lo
+         schermo e i due pulsanti riempiono tutto lo spazio (vedi
+         .work__grid--full in style.css, sezione "14. PAGINA LAVORI").
+    =========================================================== -->
+    <section class="lavori-page">
+      <div class="work__grid work__grid--full">
+        <a href="brand-comunicazione.html" class="work-card reveal" data-cursor-text="Vai">
+          <span class="work-card__title">Brand e comunicazione</span>
+        </a>
+        <a href="eventi.html" class="work-card reveal" data-cursor-text="Vai">
+          <span class="work-card__title">Eventi</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER — versione ridotta rispetto a index.html: niente
+       intestazione "— Parliamo / Parliamo del tuo prossimo
+       progetto", solo email, social e riga finale. -->
+  <footer class="contact" id="contatti">
+    <a href="mailto:librantiadriano@gmail.com" class="contact__email reveal" data-cursor-text="Scrivi">
+      librantiadriano@gmail.com
+    </a>
+
+    <div class="contact__socials reveal">
+      <a href="#" data-cursor-text="Vai">LinkedIn</a>
+      <a href="#" data-cursor-text="Vai">Instagram</a>
+      <a href="#" data-cursor-text="Vai">Facebook</a>
+    </div>
+
+    <div class="contact__meta">
+      <span>© <span id="year"></span> Adriano Libranti — Creative Strategist</span>
+      <a href="#top" data-cursor-text="Su">Torna su ↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

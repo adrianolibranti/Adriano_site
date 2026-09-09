@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+  =============================================================
+  SITO PORTFOLIO — ADRIANO LIBRANTI
+  Pagina "Progetti personali" — elenco a strisce
+  =============================================================
+  Si apre dal pulsante "Progetti personali" in homepage (sezione
+  Portfolio) e dalla riga "Corti" nella sezione "Cosa faccio".
+
+  Stile volutamente diverso dalle altre pagine "elenco progetti"
+  (brand-comunicazione.html, eventi.html): niente card in griglia,
+  ma una striscia a tutta larghezza per ogni progetto, con titolo,
+  breve descrizione e una vera anteprima accanto al testo. Le
+  strisce si alternano — testo/anteprima, poi anteprima/testo, e
+  così via — vedi .project-strip in style.css, sezione "16. PAGINA
+  PROGETTI PERSONALI".
+
+  MODIFICA QUI: per aggiungere un progetto, copia un intero blocco
+  <a class="project-strip">...</a> e cambia titolo, tag e href.
+-->
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progetti personali — Adriano Libranti</title>
+  <meta name="description" content="Adriano Libranti — Progetti personali e corti: lavori indipendenti al di fuori dei progetti per i clienti.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body id="top">
+
+  <!-- CURSORE PERSONALIZZATO — identico a index.html, vedi lì i commenti -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__dot" id="cursorDot"></div>
+    <div class="cursor__ring" id="cursorRing">
+      <span class="cursor__label" id="cursorLabel"></span>
+    </div>
+    <div class="cursor__caret" id="cursorCaret"></div>
+  </div>
+
+  <!-- Texture "grana pellicola", identica a index.html -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ===========================================================
+       HEADER / NAVIGAZIONE — uguale al resto del sito, con i link
+       che puntano a "index.html#..." essendo una pagina diversa.
+  =========================================================== -->
+  <header class="site-header">
+    <a href="index.html" class="site-header__logo" data-cursor-text="Home">
+      <img src="assets/img/logo.png" alt="Adriano Libranti">
+    </a>
+
+    <nav class="site-header__nav">
+      <a href="index.html#servizi" data-cursor-text="Vai">Cosa faccio</a>
+      <a href="index.html#lavori" data-cursor-text="Vai">Portfolio</a>
+      <a href="index.html#chi-sono" data-cursor-text="Vai">Chi sono</a>
+      <a href="index.html#contatti" data-cursor-text="Vai">Contatti</a>
+    </nav>
+
+    <a href="mailto:librantiadriano@gmail.com" class="site-header__cta" data-cursor-text="Scrivi">
+      Scrivimi
+    </a>
+  </header>
+
+  <main>
+
+    <!-- ===========================================================
+         ELENCO A STRISCE
+         Un <a class="project-strip"> per progetto: dentro, un
+         .project-strip__body (titolo + descrizione + freccia) e un
+         .project-strip__preview (l'anteprima, per ora un gradiente
+         segnaposto). Le righe pari si dispongono a specchio rispetto
+         alle dispari — è automatico, gestito in style.css con
+         :nth-child(even), non serve invertire l'ordine qui in HTML.
+         MODIFICA QUI: per aggiungere un progetto copia un intero
+         blocco <a class="project-strip">; per l'immagine vera,
+         sostituisci il gradiente di .project-strip__preview in
+         style.css con background-image: url(...).
+    =========================================================== -->
+    <section class="strip-list">
+      <a href="#" class="project-strip reveal" data-cursor-text="Vai">
+        <div class="project-strip__body">
+          <h3 class="project-strip__title">Progetto 01</h3>
+          <p class="project-strip__desc">Breve descrizione del progetto: di cosa si tratta, per chi, con quale risultato.</p>
+        </div>
+        <div class="project-strip__preview"></div>
+      </a>
+      <a href="#" class="project-strip reveal" data-cursor-text="Vai">
+        <div class="project-strip__body">
+          <h3 class="project-strip__title">Progetto 02</h3>
+          <p class="project-strip__desc">Breve descrizione del progetto: di cosa si tratta, per chi, con quale risultato.</p>
+        </div>
+        <div class="project-strip__preview"></div>
+      </a>
+      <a href="#" class="project-strip reveal" data-cursor-text="Vai">
+        <div class="project-strip__body">
+          <h3 class="project-strip__title">Progetto 03</h3>
+          <p class="project-strip__desc">Breve descrizione del progetto: di cosa si tratta, per chi, con quale risultato.</p>
+        </div>
+        <div class="project-strip__preview"></div>
+      </a>
+      <a href="#" class="project-strip reveal" data-cursor-text="Vai">
+        <div class="project-strip__body">
+          <h3 class="project-strip__title">Progetto 04</h3>
+          <p class="project-strip__desc">Breve descrizione del progetto: di cosa si tratta, per chi, con quale risultato.</p>
+        </div>
+        <div class="project-strip__preview"></div>
+      </a>
+    </section>
+
+  </main>
+
+  <!-- FOOTER — versione ridotta come nelle altre pagine "elenco
+       progetti": niente intestazione "— Parliamo", solo email,
+       social e riga finale. -->
+  <footer class="contact" id="contatti">
+    <a href="mailto:librantiadriano@gmail.com" class="contact__email reveal" data-cursor-text="Scrivi">
+      librantiadriano@gmail.com
+    </a>
+
+    <div class="contact__socials reveal">
+      <a href="#" data-cursor-text="Vai">LinkedIn</a>
+      <a href="#" data-cursor-text="Vai">Instagram</a>
+      <a href="#" data-cursor-text="Vai">Facebook</a>
+    </div>
+
+    <div class="contact__meta">
+      <span>© <span id="year"></span> Adriano Libranti — Creative Strategist</span>
+      <a href="#top" data-cursor-text="Su">Torna su ↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
