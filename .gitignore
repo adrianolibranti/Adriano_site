@@ -1,0 +1,6 @@
+# File di sistema macOS
+.DS_Store
+**/.DS_Store
+
+# Cartelle/file locali di Claude Code, non fanno parte del sito
+.claude/

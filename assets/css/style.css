@@ -1,0 +1,684 @@
+/* =================================================================
+   ADRIANO LIBRANTI — PORTFOLIO
+   Foglio di stile principale.
+
+   INDICE (cerca questi titoli per saltare velocemente a una sezione):
+   1.  VARIABILI GLOBALI  ← qui cambi colori e font in un colpo solo
+   2.  RESET DI BASE
+   3.  UTILITY (reveal, section-label, link-arrow...)
+   4.  PRELOADER
+   5.  CURSORE CUSTOM
+   6.  GRANA / TEXTURE CINEMA
+   7.  HEADER
+   8.  HERO
+   9.  CHI SONO
+   10. SERVIZI + HOVER PREVIEW
+   11. LAVORI (teaser)
+   12. QUOTE
+   13. CONTATTI / FOOTER
+   14. RESPONSIVE (mobile/tablet)
+   15. ACCESSIBILITÀ (riduzione animazioni)
+   ================================================================= */
+
+
+/* -----------------------------------------------------------------
+   1. VARIABILI GLOBALI
+   Tutto ciò che riguarda il "look" del sito parte da qui.
+   Cambia questi valori per modificare colori, font e spaziature
+   in tutte le pagine senza dover toccare il resto del CSS.
+----------------------------------------------------------------- */
+:root {
+  /* Palette — atmosfera scura e cinematografica.
+     MODIFICA QUI se vuoi un'altra palette (es. più chiara). */
+  --color-bg: #0b0b0c;          /* sfondo principale, quasi nero */
+  --color-bg-alt: #111113;      /* sfondo leggermente diverso (sezioni alternate) */
+  --color-text: #f4f1ea;        /* testo principale, bianco caldo */
+  --color-text-dim: #9a968d;    /* testo secondario / grigio caldo */
+  --color-accent: #c9a876;      /* oro/ambra — dettagli, hover, accenti "cinema" */
+  --color-line: rgba(244, 241, 234, 0.14); /* linee divisorie sottili */
+
+  /* Font.
+     - Display: titoli grandi, editoriali → Courier Prime (monospace
+       da sceneggiatura/macchina da scrivere — lo stesso font usato
+       negli script cinematografici professionali)
+     - Body: testo corrente, UI → Inter (sans)
+     MODIFICA QUI se cambi i font nel tag <link> di index.html */
+  --font-display: "Courier Prime", "Courier New", monospace;
+  --font-body: "Inter", -apple-system, sans-serif;
+
+  /* Spaziature sezione: distanza verticale tra i blocchi principali */
+  --section-padding: clamp(5rem, 12vw, 10rem);
+  --side-padding: clamp(1.5rem, 6vw, 5rem);
+
+  /* Timing delle transizioni, per coerenza in tutto il sito */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration: 0.6s;
+}
+
+
+/* -----------------------------------------------------------------
+   2. RESET DI BASE
+----------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg);
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Mentre il preloader è attivo, blocchiamo lo scroll della pagina */
+body.is-loading { overflow: hidden; height: 100vh; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul { list-style: none; margin: 0; padding: 0; }
+
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  margin: 0;
+}
+
+em { font-style: italic; color: var(--color-accent); }
+
+img { max-width: 100%; display: block; }
+
+section { position: relative; }
+
+
+/* -----------------------------------------------------------------
+   3. UTILITY
+----------------------------------------------------------------- */
+
+/* Etichetta piccola "— Titolo sezione" usata prima di ogni blocco */
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+  margin: 0 0 2rem;
+}
+
+/* Link con freccia, usato per le call to action testuali */
+.link-arrow {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  border-bottom: 1px solid var(--color-line);
+  padding-bottom: 0.3rem;
+  transition: border-color var(--duration) var(--ease), color var(--duration) var(--ease);
+}
+.link-arrow:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+/* Elementi con classe .reveal partono invisibili e leggermente
+   spostati in basso; main.js aggiunge .is-visible quando entrano
+   nel viewport (vedi initScrollReveal in main.js). */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Piccolo sfalsamento tra elementi vicini per un effetto "a cascata" */
+.hero__title .reveal:nth-child(1) { transition-delay: 0.05s; }
+.hero__title .reveal:nth-child(2) { transition-delay: 0.15s; }
+.hero__title .reveal:nth-child(3) { transition-delay: 0.25s; }
+
+
+/* -----------------------------------------------------------------
+   4. PRELOADER
+----------------------------------------------------------------- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transition: transform 0.9s var(--ease), opacity 0.7s ease;
+}
+.preloader__count {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 8vw, 5rem);
+  font-weight: 300;
+  color: var(--color-text);
+}
+.preloader__count::after { content: "%"; font-size: 0.5em; margin-left: 0.2em; color: var(--color-accent); }
+.preloader__label {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+/* Stato finale: il preloader scivola verso l'alto e sparisce */
+.preloader.is-done {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* -----------------------------------------------------------------
+   5. CURSORE CUSTOM
+   Visibile solo su dispositivi con puntatore preciso (mouse/trackpad).
+   Su touch viene nascosto in sezione 14 (responsive). Ha tre stati:
+   normale (punto), hover su link (anello grande + etichetta) e
+   hover su testo (caret lampeggiante stile macchina da scrivere,
+   vedi in fondo a questa sezione).
+----------------------------------------------------------------- */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 150;
+  pointer-events: none;
+  mix-blend-mode: difference; /* il cursore "inverte" i colori sotto di sé, effetto cinema */
+}
+.cursor__dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--color-text);
+  border-radius: 50%;
+}
+.cursor__ring {
+  position: fixed;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border: 1px solid var(--color-text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.3s var(--ease), height 0.3s var(--ease),
+              margin 0.3s var(--ease), border-color 0.3s var(--ease),
+              background-color 0.3s var(--ease);
+}
+.cursor__label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+/* Stato "hover": quando il mouse è su un link, l'anello si ingrandisce
+   e mostra l'eventuale testo definito in data-cursor-text nell'HTML */
+.cursor.is-hovering .cursor__ring {
+  width: 84px;
+  height: 84px;
+  margin: -42px 0 0 -42px;
+  background: var(--color-text);
+}
+.cursor.is-hovering .cursor__label { opacity: 1; color: var(--color-bg); }
+.cursor.is-hovering .cursor__dot { opacity: 0; }
+
+/* Stato "testo": quando il mouse passa sopra un titolo o una frase
+   in Courier Prime (elementi con data-cursor="text" in index.html),
+   punto e anello spariscono e al loro posto appare un caret —
+   la classica barretta verticale spessa, come il cursore di una
+   vecchia macchina da scrivere/terminale.
+
+   La dimensione non è fissa: main.js legge la font-size del testo
+   sotto il mouse e la scrive nella variabile --caret-size, così il
+   caret è sempre proporzionato al testo — enorme sul titolo hero,
+   più contenuto sui titoli piccoli. MODIFICA QUI i moltiplicatori
+   (0.22 / 1.15) per renderlo ancora più spesso/alto o più sottile.
+
+   Il colore del caret (--caret-color) segue quello del testo che
+   sta coprendo (impostato da main.js): siccome il cursore usa
+   mix-blend-mode: difference (vedi ".cursor" più sopra), un colore
+   identico a quello del testo sotto produce nero — è per questo che
+   il testo "sparisce" diventando nero al passaggio del caret, sia
+   che sia bianco (--color-text) sia che sia oro (--color-accent). */
+.cursor__caret {
+  position: fixed;
+  width: calc(var(--caret-size, 48px) * 0.22);
+  height: calc(var(--caret-size, 48px) * 1.15);
+  margin: calc(var(--caret-size, 48px) * -0.575) 0 0 calc(var(--caret-size, 48px) * -0.11);
+  background: var(--caret-color, var(--color-text));
+  border-radius: 1px;
+  opacity: 0;
+  transform: scaleY(0.4);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease),
+              width 0.2s var(--ease), height 0.2s var(--ease), margin 0.2s var(--ease);
+}
+.cursor.is-text-hovering .cursor__dot,
+.cursor.is-text-hovering .cursor__ring {
+  opacity: 0;
+}
+.cursor.is-text-hovering .cursor__caret {
+  opacity: 1;
+  transform: scaleY(1);
+  /* Fisso, senza lampeggio: MODIFICA QUI se in futuro lo vuoi di
+     nuovo intermittente — basta rimettere una regola "animation". */
+}
+
+
+/* -----------------------------------------------------------------
+   6. GRANA / TEXTURE CINEMA
+   Overlay statico che aggiunge una leggerissima grana simile a
+   pellicola su tutta la pagina — dettaglio che rinforza l'estetica
+   cinematografica. Puro CSS, nessuna immagine da caricare.
+----------------------------------------------------------------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+
+/* -----------------------------------------------------------------
+   7. HEADER
+   È fissa in cima (position: fixed) così resta visibile durante lo
+   scroll. Per questo motivo ha bisogno di uno sfondo (qui semi-
+   trasparente + sfocato, effetto "vetro") altrimenti il testo delle
+   sezioni sottostanti le passerebbe dietro e sembrerebbe sovrapporsi
+   al logo/menu. MODIFICA QUI --color-bg-alt/opacità se vuoi un header
+   più o meno trasparente.
+----------------------------------------------------------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem var(--side-padding);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  background: rgba(11, 11, 12, 0.7); /* stesso tono di --color-bg, semi-trasparente */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--duration) var(--ease);
+}
+/* Quando si scrolla, la pagina aggiunge .is-scrolled al body (main.js)
+   così mostriamo anche una sottile linea di separazione sotto l'header */
+body.is-scrolled .site-header {
+  border-bottom-color: var(--color-line);
+}
+
+.site-header__logo {
+  display: flex;
+  align-items: center;
+}
+/* Altezza del logo nell'header. MODIFICA QUI se il tuo PNG ha proporzioni
+   diverse: la larghezza si adatta da sola (width: auto sotto). */
+.site-header__logo img {
+  height: 70px;
+  width: auto;
+}
+
+.site-header__nav {
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+.site-header__nav a {
+  position: relative;
+  padding-bottom: 0.2rem;
+}
+/* piccola linea che si allarga da sinistra a destra al passaggio del mouse */
+.site-header__nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transition: width var(--duration) var(--ease);
+}
+.site-header__nav a:hover::after { width: 100%; }
+
+.site-header__cta {
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  transition: border-color var(--duration) var(--ease), color var(--duration) var(--ease);
+}
+.site-header__cta:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+
+/* -----------------------------------------------------------------
+   8. HERO
+----------------------------------------------------------------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 var(--side-padding);
+  padding-top: 6rem;
+}
+
+.hero__eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+  margin-bottom: 1.5rem;
+}
+
+.hero__title {
+  font-size: clamp(2.2rem, 6.2vw, 5.4rem);
+  line-height: 1.05;
+  font-weight: 400;
+  max-width: 22ch;
+}
+.hero__title span { display: block; }
+
+.hero__subtitle {
+  margin-top: 2rem;
+  max-width: 42ch;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  color: var(--color-text-dim);
+}
+
+
+/* -----------------------------------------------------------------
+   9. CHI SONO
+----------------------------------------------------------------- */
+.about {
+  padding: var(--section-padding) var(--side-padding);
+  max-width: 1100px;
+}
+
+.about__statement {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.4vw, 2.7rem);
+  line-height: 1.3;
+  font-weight: 400;
+  max-width: 26ch;
+}
+
+.about__details {
+  margin-top: 3rem;
+  max-width: 46ch;
+  color: var(--color-text-dim);
+  font-size: 1.05rem;
+}
+
+
+/* -----------------------------------------------------------------
+   10. SERVIZI + HOVER PREVIEW
+----------------------------------------------------------------- */
+.services {
+  padding: var(--section-padding) var(--side-padding);
+  background: var(--color-bg-alt);
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.services__list { max-width: 1100px; margin: 0 auto; }
+
+.services__row {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(1rem, 4vw, 3rem);
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--color-line);
+  cursor: pointer;
+  transition: padding-left var(--duration) var(--ease);
+}
+.services__row:first-child { border-top: 1px solid var(--color-line); }
+.services__row:hover { padding-left: 1rem; }
+
+.services__index {
+  font-size: 0.85rem;
+  color: var(--color-text-dim);
+  width: 2ch;
+  flex-shrink: 0;
+}
+
+.services__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3.4vw, 2.2rem);
+  flex: 1;
+  transition: color var(--duration) var(--ease);
+}
+.services__row:hover .services__name { color: var(--color-accent); }
+
+.services__desc {
+  max-width: 32ch;
+  font-size: 0.9rem;
+  color: var(--color-text-dim);
+  text-align: right;
+}
+
+/* Riquadro immagine "fantasma" che segue il cursore quando si
+   passa sopra una riga di servizio. Il colore/gradiente cambia
+   in base a data-preview (vedi le classi .preview--01 ecc. sotto).
+   MODIFICA QUI: sostituisci i gradienti con vere immagini, es.
+   .preview--01 { background-image: url("../img/storytelling.jpg"); } */
+.hover-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 180px;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.85);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.hover-preview.is-active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.hover-preview.preview--01 { background-image: linear-gradient(135deg, #2b2620, #c9a876); }
+.hover-preview.preview--02 { background-image: linear-gradient(135deg, #1c1c1e, #6f6a5f); }
+.hover-preview.preview--03 { background-image: linear-gradient(135deg, #3a2f28, #e8ddc7); }
+.hover-preview.preview--04 { background-image: linear-gradient(135deg, #14181c, #8a97a3); }
+.hover-preview.preview--05 { background-image: linear-gradient(135deg, #050505, #4a3f2f); }
+.hover-preview.preview--a { background-image: linear-gradient(135deg, #23201c, #a68a5b); }
+.hover-preview.preview--b { background-image: linear-gradient(135deg, #1a1a1c, #7d7466); }
+.hover-preview.preview--c { background-image: linear-gradient(135deg, #201c16, #cbb083); }
+
+
+/* -----------------------------------------------------------------
+   11. LAVORI (teaser)
+----------------------------------------------------------------- */
+.work {
+  padding: var(--section-padding) var(--side-padding);
+}
+
+.work__title {
+  font-size: clamp(1.8rem, 4.2vw, 2.8rem);
+  max-width: 16ch;
+}
+
+.work__intro {
+  margin-top: 1.5rem;
+  max-width: 46ch;
+  color: var(--color-text-dim);
+}
+
+.work__grid {
+  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.work-card {
+  aspect-ratio: 4 / 5;
+  border-radius: 4px;
+  border: 1px solid var(--color-line);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--duration) var(--ease);
+}
+/* Sfondo sfumato placeholder, riusa gli stessi colori delle preview servizi.
+   MODIFICA QUI quando avrai le immagini reali dei progetti:
+   sostituisci con background-image: url(...) su ciascuna .work-card. */
+.work-card[data-preview="a"] { background: linear-gradient(160deg, #1a1712, #23201c 60%); }
+.work-card[data-preview="b"] { background: linear-gradient(160deg, #131313, #1a1a1c 60%); }
+.work-card[data-preview="c"] { background: linear-gradient(160deg, #17130e, #201c16 60%); }
+.work-card:hover { transform: translateY(-6px); }
+
+.work-card__number {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+.work-card__tag {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+}
+
+
+/* -----------------------------------------------------------------
+   12. QUOTE
+----------------------------------------------------------------- */
+.quote {
+  padding: var(--section-padding) var(--side-padding);
+  background: var(--color-bg-alt);
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  text-align: center;
+}
+.quote__text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+  line-height: 1.35;
+  max-width: 24ch;
+  margin: 0 auto;
+}
+.quote__author {
+  display: block;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+
+/* -----------------------------------------------------------------
+   13. CONTATTI / FOOTER
+----------------------------------------------------------------- */
+.contact {
+  padding: var(--section-padding) var(--side-padding) 3rem;
+  text-align: center;
+}
+
+.contact__title {
+  font-size: clamp(1.8rem, 4.2vw, 2.8rem);
+  max-width: 18ch;
+  margin: 0 auto;
+}
+
+.contact__email {
+  display: inline-block;
+  margin-top: 2.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3.2vw, 2rem);
+  border-bottom: 1px solid var(--color-line);
+  transition: color var(--duration) var(--ease), border-color var(--duration) var(--ease);
+}
+.contact__email:hover { color: var(--color-accent); border-color: var(--color-accent); }
+
+.contact__socials {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+.contact__socials a:hover { color: var(--color-accent); }
+
+.contact__meta {
+  margin-top: 6rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-line);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--color-text-dim);
+}
+
+
+/* -----------------------------------------------------------------
+   14. RESPONSIVE
+----------------------------------------------------------------- */
+
+/* Nascondi il cursore custom e ripristina quello di sistema sui
+   dispositivi touch, dove non ha senso (niente mouse da inseguire) */
+@media (pointer: coarse) {
+  .cursor { display: none; }
+}
+
+@media (max-width: 860px) {
+  .site-header__nav { display: none; } /* su mobile teniamo solo logo + CTA */
+
+  .services__row { flex-wrap: wrap; }
+  .services__desc { text-align: left; width: 100%; order: 3; margin-top: 0.5rem; }
+
+  .hover-preview { display: none; } /* l'anteprima al hover non serve su schermi piccoli/touch */
+
+  .work__grid { grid-template-columns: 1fr; }
+
+  .contact__meta { flex-direction: column; gap: 0.75rem; text-align: center; }
+}
+
+
+/* -----------------------------------------------------------------
+   15. ACCESSIBILITÀ — rispetta chi preferisce meno animazioni
+----------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .preloader, .work-card, .cursor__caret {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}

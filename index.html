@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--
+  =============================================================
+  SITO PORTFOLIO — ADRIANO LIBRANTI
+  Creative Strategist — Storytelling / Copy / Design / UX / Cinema
+  =============================================================
+  Questo file contiene SOLO la Homepage. Struttura pensata per
+  essere facile da leggere e modificare anche senza esperienza
+  avanzata di sviluppo: ogni sezione è commentata e delimitata
+  chiaramente. Cerca "MODIFICA QUI" per trovare i punti dove
+  cambiare testi, link e immagini più di frequente.
+
+  Struttura cartelle:
+  - index.html            → questa pagina
+  - assets/css/style.css  → tutti gli stili (colori, font, layout)
+  - assets/js/main.js     → interazioni (cursore, hover, reveal)
+  - assets/img/           → dove mettere le immagini reali
+
+  Ispirazione estetica: floema.com — tipografia grande,
+  atmosfera cinematografica, micro-interazioni al passaggio
+  del mouse, transizioni morbide.
+-->
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adriano Libranti — Creative Strategist</title>
+  <meta name="description" content="Adriano Libranti — Creative Strategist. Storytelling, copywriting, design, UX e linguaggio cinematografico al servizio dei brand.">
+
+  <!-- ===========================================================
+       FONT: Courier Prime (monospace da sceneggiatura/macchina da
+       scrivere, per i titoli grandi ed editoriali) + Inter (sans,
+       per testi e UI). Se vuoi cambiare i font basta sostituire
+       questo link e le variabili --font-display / --font-body in
+       assets/css/style.css
+  =========================================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body id="top">
+
+  <!-- ===========================================================
+       PRELOADER
+       Schermata nera iniziale con conteggio percentuale, effetto
+       "apertura di sipario" cinematografico. Si nasconde da sola
+       quando la pagina è pronta (vedi main.js → initPreloader).
+  =========================================================== -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <span class="preloader__count" id="preloaderCount">0</span>
+    <span class="preloader__label">Adriano Libranti</span>
+  </div>
+
+  <!-- ===========================================================
+       CURSORE PERSONALIZZATO
+       Tre elementi:
+       - un punto piccolo che segue il mouse in modo istantaneo
+       - un anello che lo segue con un piccolo ritardo (effetto
+         morbido) e si allarga sui link/pulsanti
+       - un "caret" (barretta lampeggiante stile macchina da
+         scrivere) che sostituisce anello e punto quando il mouse
+         passa sopra i testi principali del sito, quelli in
+         Courier Prime — vedi gli attributi data-cursor="text" nelle
+         varie sezioni qui sotto.
+       Su mobile il cursore viene nascosto automaticamente via CSS.
+  =========================================================== -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__dot" id="cursorDot"></div>
+    <div class="cursor__ring" id="cursorRing">
+      <span class="cursor__label" id="cursorLabel"></span>
+    </div>
+    <div class="cursor__caret" id="cursorCaret"></div>
+  </div>
+
+  <!-- Texture "grana pellicola" sovrapposta a tutta la pagina, in stile cinema -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ===========================================================
+       HEADER / NAVIGAZIONE
+       Fissa in alto, minimale. Le voci puntano alle sezioni della
+       stessa homepage (essendo l'unica pagina per ora). Quando
+       creerai le altre pagine, sostituisci gli href con i file
+       reali (es. "lavori.html", "chi-sono.html").
+  =========================================================== -->
+  <header class="site-header">
+    <!-- Logo in PNG (sfondo trasparente). MODIFICA QUI: sostituisci il file
+         in assets/img/logo.png se vuoi cambiare logo. Se cambia notevolmente
+         la proporzione dell'immagine, regola l'altezza in style.css alla
+         regola ".site-header__logo img". -->
+    <a href="#top" class="site-header__logo" data-cursor-text="Home">
+      <img src="assets/img/logo.png" alt="Adriano Libranti">
+    </a>
+
+    <nav class="site-header__nav">
+      <a href="#servizi" data-cursor-text="Vai">Cosa faccio</a>
+      <a href="#lavori" data-cursor-text="Vai">Lavori</a>
+      <a href="#chi-sono" data-cursor-text="Vai">Chi sono</a>
+      <a href="#contatti" data-cursor-text="Vai">Contatti</a>
+    </nav>
+
+    <!-- MODIFICA QUI: link social principale in header, opzionale -->
+    <a href="mailto:librantiadriano@gmail.com" class="site-header__cta" data-cursor-text="Scrivi">
+      Scrivimi
+    </a>
+  </header>
+
+  <main>
+
+    <!-- ===========================================================
+         HERO
+         Sezione a schermo intero. Titolo enorme + sottotitolo.
+         Questo è il primo impatto del sito:
+         MODIFICA QUI il claim principale se vuoi cambiare messaggio.
+    =========================================================== -->
+    <section class="hero" id="hero">
+      <p class="hero__eyebrow reveal">Portfolio — Creative Strategist</p>
+
+      <h1 class="hero__title" data-cursor="text">
+        <span class="reveal">Storie che si</span>
+        <span class="reveal"><em>vedono</em>, si leggono,</span>
+        <span class="reveal">si vivono.</span>
+      </h1>
+
+      <p class="hero__subtitle reveal">
+        Sono Adriano Libranti. Unisco storytelling, copy, design, UX e
+        linguaggio cinematografico per costruire brand che restano impressi.
+      </p>
+
+    </section>
+
+    <!-- ===========================================================
+         CHI SONO / MANIFESTO
+         Testo grande in stile editoriale con una frase manifesto
+         e un paragrafo di dettaglio più piccolo sotto.
+         MODIFICA QUI la tua bio breve.
+    =========================================================== -->
+    <section class="about" id="chi-sono">
+      <p class="section-label reveal">— Chi sono</p>
+
+      <p class="about__statement reveal" data-cursor="text">
+        Costruisco narrazioni che uniscono parola, immagine e movimento
+        per dare forma a <em>brand memorabili</em> — pensando ogni
+        progetto come si pensa una scena: con un'inquadratura, un ritmo
+        e una direzione.
+      </p>
+
+      <div class="about__details reveal">
+        <p>
+          Da anni lavoro all'incrocio tra copywriting, design e UX,
+          portando nel digitale la sensibilità visiva e narrativa del
+          cinema. Il risultato sono contenuti ed esperienze che non si
+          limitano a comunicare: fanno sentire qualcosa.
+        </p>
+        <a href="#contatti" class="link-arrow" data-cursor-text="Vai">
+          Parliamo del tuo progetto →
+        </a>
+      </div>
+    </section>
+
+    <!-- ===========================================================
+         SERVIZI / EXPERTISE
+         Lista numerata in stile editoriale. Passando il mouse su
+         ogni riga compare un'anteprima immagine che segue il
+         cursore (effetto tipico dei siti "cinematografici" come
+         Floema). Le immagini sono placeholder a gradiente:
+         MODIFICA QUI sostituendo data-preview con la classe legata
+         a una vera immagine (vedi CSS .preview--01, --02, ecc.
+         e main.js per come funziona).
+    =========================================================== -->
+    <section class="services" id="servizi">
+      <p class="section-label reveal">— Cosa faccio</p>
+
+      <ul class="services__list">
+        <li class="services__row reveal" data-preview="01">
+          <span class="services__index">01</span>
+          <span class="services__name">Storytelling</span>
+          <span class="services__desc">Narrazioni che danno senso e direzione a un brand.</span>
+        </li>
+        <li class="services__row reveal" data-preview="02">
+          <span class="services__index">02</span>
+          <span class="services__name">Copywriting</span>
+          <span class="services__desc">Parole pensate per convertire, restare impresse, suonare vere.</span>
+        </li>
+        <li class="services__row reveal" data-preview="03">
+          <span class="services__index">03</span>
+          <span class="services__name">Design</span>
+          <span class="services__desc">Identità visive che traducono un'idea in immagine.</span>
+        </li>
+        <li class="services__row reveal" data-preview="04">
+          <span class="services__index">04</span>
+          <span class="services__name">UX</span>
+          <span class="services__desc">Esperienze digitali fluide, intuitive, centrate sulle persone.</span>
+        </li>
+        <li class="services__row reveal" data-preview="05">
+          <span class="services__index">05</span>
+          <span class="services__name">Cinema</span>
+          <span class="services__desc">Linguaggio visivo e montaggio per raccontare per immagini.</span>
+        </li>
+      </ul>
+
+      <!-- Elemento che mostra l'anteprima immagine al passaggio del mouse -->
+      <div class="hover-preview" id="hoverPreview" aria-hidden="true"></div>
+    </section>
+
+    <!-- ===========================================================
+         LAVORI (teaser)
+         Sezione ponte in attesa del portfolio progetti completo,
+         che costruiremo in una pagina/sezione dedicata più avanti.
+         MODIFICA QUI quando avrai i primi case study da mostrare:
+         basta sostituire ogni .work-card con un vero progetto
+         (immagine, titolo, categoria, link).
+    =========================================================== -->
+    <section class="work" id="lavori">
+      <p class="section-label reveal">— Lavori selezionati</p>
+      <h2 class="work__title reveal" data-cursor="text">I progetti arrivano presto.</h2>
+      <p class="work__intro reveal">
+        Sto preparando una selezione dei lavori più significativi.
+        Nel frattempo scrivimi: ti mostro volentieri il portfolio completo.
+      </p>
+
+      <div class="work__grid">
+        <div class="work-card reveal" data-preview="a">
+          <span class="work-card__number">Progetto 01</span>
+          <span class="work-card__tag">Prossimamente</span>
+        </div>
+        <div class="work-card reveal" data-preview="b">
+          <span class="work-card__number">Progetto 02</span>
+          <span class="work-card__tag">Prossimamente</span>
+        </div>
+        <div class="work-card reveal" data-preview="c">
+          <span class="work-card__number">Progetto 03</span>
+          <span class="work-card__tag">Prossimamente</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================================
+         QUOTE / CINEMA
+         Frase manifesto a schermo intero, tono cinematografico,
+         per dare respiro tra le sezioni.
+         MODIFICA QUI la citazione.
+    =========================================================== -->
+    <section class="quote">
+      <p class="quote__text reveal" data-cursor="text">
+        “Il cinema mi ha insegnato che ogni dettaglio racconta
+        qualcosa — anche quando tace.”
+      </p>
+      <span class="quote__author reveal">— Adriano Libranti</span>
+    </section>
+
+  </main>
+
+  <!-- ===========================================================
+       CONTATTI / FOOTER
+       Call to action finale con email grande e social.
+       MODIFICA QUI l'email (se diversa da quella attuale) e i
+       link social — sono impostati su "#" come segnaposto.
+  =========================================================== -->
+  <footer class="contact" id="contatti">
+    <p class="section-label reveal">— Parliamo</p>
+    <h2 class="contact__title reveal" data-cursor="text">Parliamo del tuo prossimo progetto.</h2>
+
+    <a href="mailto:librantiadriano@gmail.com" class="contact__email reveal" data-cursor-text="Scrivi">
+      librantiadriano@gmail.com
+    </a>
+
+    <div class="contact__socials reveal">
+      <!-- MODIFICA QUI: sostituisci "#" con i tuoi profili reali -->
+      <a href="#" data-cursor-text="Vai">LinkedIn</a>
+      <a href="#" data-cursor-text="Vai">Instagram</a>
+      <a href="#" data-cursor-text="Vai">Behance</a>
+    </div>
+
+    <div class="contact__meta">
+      <span>© <span id="year"></span> Adriano Libranti — Creative Strategist</span>
+      <a href="#top" data-cursor-text="Su">Torna su ↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
