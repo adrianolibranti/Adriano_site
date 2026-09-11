@@ -9,13 +9,14 @@
    effetto, basta commentare la relativa riga nel blocco AVVIO.
 
    INDICE:
-   1. initPreloader     → schermata di caricamento iniziale
-   2. initCustomCursor   → cursore che segue il mouse
-   3. initScrollReveal   → animazioni "reveal" quando si scrolla
-   4. initHoverPreview   → anteprima immagine sulle righe servizi/lavori
-   5. initFooterYear     → anno corrente nel footer
+   1. initPreloader       → schermata di caricamento iniziale
+   2. initCustomCursor    → cursore che segue il mouse
+   3. initScrollReveal    → animazioni "reveal" quando si scrolla
+   4. initHoverPreview    → anteprima immagine sulle righe servizi/lavori
+   5. initFooterYear      → anno corrente nel footer
    6. initHeaderScrollState → aggiunge un bordo sotto l'header quando si scrolla
-   7. AVVIO
+   7. initScrollText      → testo "macchina da scrivere" tra Hero e Chi sono
+   8. AVVIO
    ================================================================= */
 
 
@@ -242,7 +243,93 @@ function initHeaderScrollState() {
 
 
 /* -----------------------------------------------------------------
-   7. AVVIO
+   7. TESTO "MACCHINA DA SCRIVERE" TRA HERO E CHI SONO
+   A differenza di ".reveal" (che appare una volta sola quando entra
+   nello schermo), questo testo resta agganciato alla posizione di
+   scroll in tempo reale: più si scrolla, più caratteri vengono
+   "digitati" — come una battitura a macchina, senza dissolvenze.
+
+   Spezziamo il testo in tanti <span class="scroll-text__char"> (uno
+   per carattere, invisibili di default — vedi style.css) camminando
+   solo sui nodi di testo, poi ne mostriamo un numero crescente in
+   base al progresso di scroll: 0 = appena entrato dal basso, niente
+   scritto; 1 = arrivato a un terzo dall'alto dello schermo, tutto
+   scritto.
+   MODIFICA QUI START_VH/END_VH per allungare o accorciare la
+   distanza di scroll su cui avviene la "battitura".
+----------------------------------------------------------------- */
+function initScrollText() {
+  const container = document.getElementById("scrollText");
+  if (!container) return;
+
+  // Spezza il testo in caratteri una sola volta. Gli spazi restano
+  // testo semplice (non diventano <span>) così le parole vanno a
+  // capo normalmente.
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+  const textNodes = [];
+  let node;
+  while ((node = walker.nextNode())) textNodes.push(node);
+
+  const chars = []; // riferimento a tutti gli span, nell'ordine di lettura
+
+  textNodes.forEach((textNode) => {
+    const fragment = document.createDocumentFragment();
+    [...textNode.textContent].forEach((char) => {
+      if (char === " ") {
+        fragment.appendChild(document.createTextNode(" "));
+      } else {
+        const span = document.createElement("span");
+        span.className = "scroll-text__char";
+        span.textContent = char;
+        fragment.appendChild(span);
+        chars.push(span);
+      }
+    });
+    textNode.parentNode.replaceChild(fragment, textNode);
+  });
+
+  // Chi preferisce meno animazioni lo vede già scritto tutto, fermo
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    chars.forEach((c) => c.classList.add("is-typed"));
+    return;
+  }
+
+  const START_VH = 1;     // il testo è "appena entrato" quando il suo bordo superiore è al fondo dello schermo
+  const END_VH = 0.13;    // ed è "tutto scritto" quando il bordo superiore è quasi arrivato in cima allo schermo (più il numero è vicino a 0 o negativo, più serve scroll = più lenta la battitura — ma non troppo, altrimenti il testo esce dallo schermo prima di finire di scriversi: va ritarato insieme all'altezza reale del blocco, vedi max-width/font-size in style.css)
+
+  let ticking = false;
+
+  function update() {
+    const vh = window.innerHeight;
+    const top = container.getBoundingClientRect().top;
+    const start = vh * START_VH;
+    const end = vh * END_VH;
+    let progress = (start - top) / (start - end);
+    progress = Math.min(1, Math.max(0, progress)); // resta tra 0 e 1
+
+    const visibleCount = Math.round(progress * chars.length);
+    chars.forEach((span, i) => {
+      span.classList.toggle("is-typed", i < visibleCount);
+    });
+    ticking = false;
+  }
+
+  function onScroll() {
+    // Un solo calcolo per frame invece che a ogni singolo evento
+    // "scroll" (che può scattare decine di volte al secondo)
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  update(); // stato corretto anche se la pagina si apre già scrollata
+}
+
+
+/* -----------------------------------------------------------------
+   8. AVVIO
    Richiamiamo tutte le funzioni quando il DOM è pronto.
 ----------------------------------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
@@ -252,4 +339,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initHoverPreview();
   initFooterYear();
   initHeaderScrollState();
+  initScrollText();
 });

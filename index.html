@@ -38,7 +38,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=7">
 </head>
 <body id="top">
 
@@ -129,6 +129,26 @@
         Mi occupo di quello che vedi, ascolti e di come vuoi che gli altri percepiscano te o il tuo brand.
       </p>
 
+    </section>
+
+    <!-- ===========================================================
+         TESTO ANIMATO ALLO SCROLL
+         Stesso font/taglia del titolo hero, sulla destra dello
+         schermo. Effetto "macchina da scrivere": mentre si scrolla,
+         il testo si scrive un carattere alla volta (nessuna
+         trasparenza/dissolvenza, i caratteri compaiono e basta),
+         legato in continuo alla posizione di scroll — non un
+         semplice reveal on/off. Gestito da initScrollText() in
+         main.js, che spezza il testo in tanti <span> (uno per
+         carattere) e ne mostra un numero crescente scrollando.
+         MODIFICA QUI il testo cambiando il contenuto del <p> qui
+         sotto; per lo stile vedi style.css, sezione "9. TESTO
+         ANIMATO ALLO SCROLL".
+    =========================================================== -->
+    <section class="scroll-text">
+      <p class="scroll-text__text" id="scrollText" data-cursor="text">
+        Do forma a ciò che vuoi comunicare, a come vuoi essere visto e a ciò che vuoi lasciare negli altri.
+      </p>
     </section>
 
     <!-- ===========================================================
@@ -293,6 +313,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=7"></script>
 </body>
 </html>
