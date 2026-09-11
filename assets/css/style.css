@@ -446,9 +446,9 @@ body.is-scrolled .site-header {
 .scroll-text__text {
   margin: 0; /* il <p> di default avrebbe un margine verticale tutto suo: lo togliamo, altrimenti riapre lo spazio che non vogliamo tra Hero e Chi Sono */
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3.7vw, 3.2rem); /* più piccola del titolo hero: distende il testo in orizzontale (poche righe larghe) e tiene basso il blocco, per stare vicini a Hero e Chi Sono */
+  font-size: clamp(1.9rem, 4.4vw, 3.8rem); /* più piccola del titolo hero: distende il testo in orizzontale (poche righe larghe) e tiene basso il blocco, per stare vicini a Hero e Chi Sono */
   line-height: 1;
-  max-width: 22ch; /* larghezza tarata per andare a capo 4/5 volte */
+  max-width: 30ch; /* larghezza tarata per andare a capo 4/5 volte */
   text-align: right;
   color: var(--color-accent);
 }
