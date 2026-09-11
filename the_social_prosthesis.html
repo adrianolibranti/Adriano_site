@@ -4,9 +4,9 @@
   SITO PORTFOLIO — ADRIANO LIBRANTI
   Progetto "The Social Prosthesis" — docufilm
   =============================================================
-  Tipo: PROGETTO PERSONALE → testo + una galleria piccola di still
-  (nessun video incorporato: si può linkare altrove). Collegata dalla
-  prima striscia in progetti-personali.html.
+  Tipo: PROGETTO PERSONALE → testo + video (embed YouTube) + galleria
+  di still + script scaricabile in PDF. Prima striscia (e primo
+  progetto) in progetti-personali.html.
 
   Per crearne uno nuovo, duplica questo file (o un altro progetto
   esistente, es. progetto-aurora.html) e adatta i blocchi — vedi
@@ -86,9 +86,7 @@
         </div>
       </div>
 
-      <!-- MODIFICA QUI quando avrai la foto vera: vedi il README in
-           assets/img/progetti/the-social-prosthesis/ -->
-      <div class="project-hero__cover reveal" aria-hidden="true"></div>
+      <div class="project-hero__cover reveal" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/cover.png')"></div>
     </section>
 
     <!-- ===========================================================
@@ -97,23 +95,76 @@
     <div class="project-body">
 
       <p class="project-body__text reveal">
-        Un progetto che accompagna il caso studio della tesi: Nuove tecnologie e storytelling: comunicare nell'era della distrazione.
-        Il progetto è nato come un docufilm, scritto interamente....
+        Un progetto che accompagna il caso studio della tesi
+        <em>Nuove tecnologie e storytelling: comunicare nell'era
+        della distrazione.</em> Nato come docufilm, scritto
+        interamente da me e realizzato unendo filmmaking
+        3D e compositing.<br>
+        Guarda il trailer e leggi la sceneggiatura completa qui sotto.
       </p>
 
-      <!-- Galleria piccola: 4 still dal docufilm. MODIFICA QUI quando
-           avrai le foto vere: vedi il README in
-           assets/img/progetti/the-social-prosthesis/ -->
+      <!-- Video: codice embed generato direttamente da YouTube
+           (Condividi → Incorpora), con l'ID "si" di tracciamento
+           incluso. "allowfullscreen" lascia allo spettatore la
+           scelta di guardarlo a schermo intero; la qualità (fino a
+           4K se disponibile) è scelta automaticamente da YouTube in
+           base a finestra/connessione, oppure a mano dall'ingranaggio
+           nei controlli del player.
+           MODIFICA QUI se cambi video: incolla il nuovo codice embed
+           da YouTube (Condividi → Incorpora) al posto di questo,
+           aggiungendo solo class="project-video reveal" e
+           loading="lazy" come nelle altre righe.
+           NOTA: se apri il file con doppio click (file://) il video
+           potrebbe non caricarsi — è un limite di YouTube con i
+           domini senza http/https vero. Su un server locale (vedi
+           README.md, "Come vedere il sito") o sul sito pubblicato
+           funziona normalmente. -->
+      <iframe
+        class="project-video reveal"
+        src="https://www.youtube.com/embed/kXfs_DzDNWI?si=YS6DhdD-qGFc7hp9"
+        title="The Social Prosthesis — video completo"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+
+      <!-- Galleria still dal docufilm. MODIFICA QUI per aggiungere/
+           togliere immagini: copia/rimuovi un .project-gallery__item
+           e il relativo file in assets/img/progetti/the-social-prosthesis/galleria/ -->
       <div class="project-gallery reveal">
-        <div class="project-gallery__item" aria-hidden="true"></div>
-        <div class="project-gallery__item" aria-hidden="true"></div>
-        <div class="project-gallery__item" aria-hidden="true"></div>
-        <div class="project-gallery__item" aria-hidden="true"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/1_1.gif')"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/2.gif')"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%2001.00_11_28_01.Immagine009.png')"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%2001.00_17_39_13.Immagine013.png')"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.00_00_15_17.Immagine030.png')"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.00_00_58_14.Immagine025.png')"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.00_01_38_01.Immagine032.png')"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.00_01_40_13.Immagine029.png')"></div>
+        <div class="project-gallery__item project-gallery__item--wide" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.gif')"></div>
       </div>
 
       <p class="project-body__text reveal">
-        In lavorazione la sottotitolazione per l'invio ai festival.
+        Il docufilm nasce da uno studio approfondito sul mondo dei social e del mezzo con cui si accede ad essi. 
+        Si focalizza su UX,UI e algoritmi che sempre più, consapevolmente o inconsapevolmente minano le nostre capacità cerebrali. 
+        Propongo possibili soluzioni al problema e ragiono su quanto questa <em>protesi sociale</em> chiamata smartphone, sia ormai parte del nostro corpo.
       </p>
+
+      <!-- Script completo in PDF, presentato come card invece che
+           come link nudo. MODIFICA QUI se cambi file/nome. -->
+      <a
+        href="assets/img/progetti/the-social-prosthesis/The%20Social%20Prosthesis_script.pdf"
+        class="project-document reveal"
+        target="_blank"
+        rel="noopener"
+        data-cursor-text="Apri"
+      >
+        <span class="project-document__icon" aria-hidden="true">📄</span>
+        <span>
+          <span class="project-document__title">Leggi la sceneggiatura completa</span>
+          <span class="project-document__meta">PDF — Script integrale di The Social Prosthesis</span>
+        </span>
+      </a>
 
     </div>
 

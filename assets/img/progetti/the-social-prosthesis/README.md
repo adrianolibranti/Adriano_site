@@ -1,11 +1,17 @@
-# Asset — The Social Prosthesis
+# Asset — The Social Prosthesis (Progetti personali)
 
-Metti qui le immagini reali del progetto "The Social Prosthesis"
-(the_social_prosthesis.html).
+Asset del progetto "The Social Prosthesis" (the_social_prosthesis.html).
 
-- `cover.jpg` — immagine di copertina (16:9), anche anteprima nella
+- `galleria/cover.png` — copertina (16:9), anche anteprima nella
   striscia in progetti-personali.html
-- `galleria/01.jpg` ... `galleria/04.jpg` — fotogrammi/still del docufilm
+- `galleria/*.png`, `galleria/*.gif` — still e gif dal docufilm,
+  mostrate nella galleria della pagina
+- `The Social Prosthesis_script.pdf` — script integrale, mostrato
+  come card scaricabile in fondo alla pagina
+- Il video principale non è un file qui dentro: è incorporato via
+  embed YouTube (id `kXfs_DzDNWI`) direttamente in
+  the_social_prosthesis.html — per cambiarlo, sostituisci l'ID
+  nell'URL dell'`<iframe class="project-video">`
 
-Finché non ci sono immagini vere, il sito mostra dei gradienti
-segnaposto (nessun file mancante da temere).
+Per aggiungere/togliere immagini dalla galleria: copia o rimuovi un
+blocco `.project-gallery__item` in the_social_prosthesis.html.

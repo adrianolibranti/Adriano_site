@@ -884,7 +884,10 @@ body.is-scrolled .site-header {
 .project-strip__preview {
   aspect-ratio: 4 / 3;
   border-radius: 4px;
-  background: linear-gradient(160deg, #1a1712, #23201c 65%);
+  background-image: linear-gradient(160deg, #1a1712, #23201c 65%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   transition: transform var(--duration) var(--ease);
 }
 .project-strip:nth-child(even) .project-strip__preview { background: linear-gradient(160deg, #131313, #1a1a1c 60%); }
@@ -910,12 +913,16 @@ body.is-scrolled .site-header {
    17. PAGINA PROGETTO (dettaglio) — BLOCCHI RIUTILIZZABILI
    Questi sono i "mattoncini" usati da ogni pagina di progetto
    (progetto-aurora.html, progetto-notte-bianca.html, the_social_prosthesis.html,
-   ecc.). Ogni progetto è libero di usare solo i blocchi che gli
-   servono:
+   il-broccolo-americano.html, stand-out-dont-fit-in.html, ecc.). Ogni progetto
+   è libero di usare solo i blocchi che gli servono:
    - .project-hero        → sempre presente: titolo, meta, copertina
    - .project-body__text  → un paragrafo di testo (quanti ne vuoi)
    - .project-video       → un video (o il suo segnaposto)
    - .project-gallery     → una galleria di immagini (quante ne vuoi)
+   - .project-document    → un file scaricabile (es. PDF) come card
+   - .project-quote       → una citazione in evidenza
+   - .project-artwork     → una singola immagine a piena risoluzione,
+                             non ritagliata (per grafiche, locandine...)
    Per un nuovo progetto: duplica una pagina esistente e adatta i
    blocchi — vedi "Come aggiungere un nuovo progetto" in README.md.
 ----------------------------------------------------------------- */
@@ -969,8 +976,10 @@ body.is-scrolled .site-header {
    pagina elenco (griglia/striscia). MODIFICA QUI quando avrai la foto
    vera: sostituisci il gradiente con background-image: url(...). */
 .project-hero__cover {
-  margin-top: 3.5rem;
+  margin: 3.5rem auto 0; /* "auto" sui lati = centrata, non più attaccata a sinistra */
+  max-width: 900px; /* stessa larghezza del corpo del progetto (.project-body) */
   aspect-ratio: 16 / 9;
+  max-height: 30rem; /* altrimenti su schermi larghi diventa enorme (16:9 a tutta larghezza). MODIFICA QUI per renderla più o meno alta */
   border-radius: 4px;
   background: linear-gradient(160deg, #1a1712, #23201c 60%);
   background-size: cover;
@@ -994,20 +1003,27 @@ body.is-scrolled .site-header {
 }
 .project-body__text strong { color: var(--color-text); font-weight: 700; }
 
-/* Video: per ora un segnaposto con un'icona play, cliccabile solo
-   in apparenza. MODIFICA QUI: quando avrai il video, sostituisci
-   l'intero <div class="project-video"> con un vero
-   <video controls src="..."></video> oppure un <iframe> (YouTube/
-   Vimeo) — tienigli lo stesso aspect-ratio 16/9. */
+/* Video: o il segnaposto con l'icona play (<div class="project-video">),
+   o — quando c'è un video vero — lo stesso identico aspect-ratio 16/9
+   applicato direttamente a un <iframe class="project-video"> (YouTube/
+   Vimeo) o <video class="project-video" controls>. "overflow: hidden"
+   serve a far rispettare l'angolo arrotondato anche all'iframe/video. */
 .project-video {
   position: relative;
   aspect-ratio: 16 / 9;
   border-radius: 4px;
+  overflow: hidden;
   background: linear-gradient(160deg, #131313, #1a1a1c 60%);
   display: flex;
   align-items: center;
   justify-content: center;
 }
+iframe.project-video,
+video.project-video {
+  width: 100%;
+  border: 0;
+}
+
 .project-video__play {
   width: 68px;
   height: 68px;
@@ -1054,6 +1070,66 @@ body.is-scrolled .site-header {
 .project-gallery__item:nth-child(5n+3) { background-image: linear-gradient(160deg, #17130e, #201c16 60%); }
 .project-gallery__item:nth-child(5n+4) { background-image: linear-gradient(160deg, #1c1712, #241e17 60%); }
 .project-gallery__item:nth-child(5n+5) { background-image: linear-gradient(160deg, #141414, #1e1e1e 60%); }
+
+/* Documento scaricabile (es. PDF di una sceneggiatura/script): una
+   card cliccabile invece di un noioso link nudo. MODIFICA QUI icona
+   e testo; l'href punta al file reale in assets/img/progetti/. */
+.project-document {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.75rem 2rem;
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  transition: border-color var(--duration) var(--ease), background-color var(--duration) var(--ease);
+}
+.project-document:hover {
+  border-color: var(--color-accent);
+  background-color: var(--color-bg-alt);
+}
+.project-document__icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.project-document__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--color-text);
+  transition: color var(--duration) var(--ease);
+}
+.project-document:hover .project-document__title { color: var(--color-accent); }
+.project-document__meta {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--color-text-dim);
+}
+
+/* Citazione dentro al corpo del progetto — stessa identità del
+   corsivo accentato usato altrove sul sito (em in Anton, sghembo). */
+.project-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+  line-height: 1.4;
+  max-width: 42ch;
+  color: var(--color-text);
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1.5rem;
+}
+
+/* Artwork singola a tutta risoluzione (non ritagliata come nella
+   griglia .project-gallery): usa un vero <img>, non uno sfondo, così
+   il rapporto d'aspetto originale resta intatto qualunque esso sia. */
+.project-artwork {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border-radius: 4px;
+}
 
 
 /* -----------------------------------------------------------------
