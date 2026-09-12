@@ -16,9 +16,6 @@ brand-comunicazione.html      → elenco progetti di brand e comunicazione
 eventi.html                   → elenco progetti eventi
 progetti-personali.html       → elenco progetti personali, a strisce
 
-progetto-aurora.html          → esempio: identità visiva (galleria grande)
-progetto-notte-bianca.html    → esempio: evento (video)
-
 the_social_prosthesis.html    → progetto personale: docufilm (video YouTube + galleria + script PDF)
 il-broccolo-americano.html    → progetto personale: sinossi di sceneggiatura (solo testo + PDF)
 stand-out-dont-fit-in.html     → progetto personale: grafica (artwork intera + citazione + download)
@@ -29,9 +26,10 @@ assets/img/                   → immagini reali
 assets/img/progetti/<nome>/   → immagini/video/PDF di ogni singolo progetto
 ```
 
-`progetto-aurora.html` e `progetto-notte-bianca.html` sono ancora
-segnaposto d'esempio (la cartella dei loro asset è vuota, mostrano i
-gradienti); gli altri tre sono progetti veri, già pubblicati.
+In `brand-comunicazione.html` ed `eventi.html` alcune card sono ancora
+senza pagina vera ("Lavori in corso", `.project-card--empty` — un
+`<div>`, non un `<a>`, così non aprono nulla al clic): sostituiscile
+man mano che i progetti veri saranno pronti, vedi sotto.
 
 ## Come aggiungere un nuovo progetto (veloce)
 
@@ -39,8 +37,6 @@ gradienti); gli altri tre sono progetti veri, già pubblicati.
    o `il-broccolo-americano.html`) e rinominala `nome-progetto.html`
    (tutto minuscolo, trattini al posto degli spazi). Guarda i progetti
    già fatti per capire come si combinano i blocchi:
-   - `progetto-aurora.html` → testo + galleria grande (identità visiva)
-   - `progetto-notte-bianca.html` → testo + video (evento)
    - `the_social_prosthesis.html` → testo + video YouTube + galleria + PDF
    - `il-broccolo-americano.html` → solo testo + PDF (nessuna foto)
    - `stand-out-dont-fit-in.html` → testo + artwork intera + citazione + download
@@ -58,8 +54,14 @@ gradienti); gli altri tre sono progetti veri, già pubblicati.
    `MODIFICA QUI` nel file.
 5. **Collega il progetto** dalla sua pagina elenco
    (`brand-comunicazione.html`, `eventi.html` o
-   `progetti-personali.html`): trova una card/striscia e sostituisci
-   `href="#"` con il file appena creato.
+   `progetti-personali.html`): in `progetti-personali.html` trova una
+   striscia e sostituisci `href="#"` con il file appena creato; in
+   `brand-comunicazione.html`/`eventi.html` trova una card
+   "Lavori in corso" (`<div class="project-card project-card--empty">`)
+   e trasformala in un link vero:
+   `<a href="nome-progetto.html" class="project-card reveal">`, con
+   dentro solo lo `<span class="project-card__title">` (togli lo
+   `<span class="project-card__tag">Lavori in corso</span>`).
 
 Tutto il resto (header, cursore, footer, animazioni "reveal") è
 identico ovunque e non richiede modifiche: è definito una volta sola
