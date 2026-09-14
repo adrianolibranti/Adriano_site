@@ -962,6 +962,8 @@ video.project-video {
 @media (max-width: 860px) {
   .site-header__nav { display: none; }
 
+  .hero { min-height: 0; justify-content: flex-start; padding-bottom: 8rem; }
+
   .lightbox__nav { font-size: 2.5rem; padding: 0.5rem; }
 
   .services__row { flex-wrap: wrap; }
