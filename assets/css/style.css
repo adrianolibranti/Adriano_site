@@ -1,72 +1,21 @@
-/* =================================================================
-   ADRIANO LIBRANTI — PORTFOLIO
-   Foglio di stile principale.
-
-   INDICE (cerca questi titoli per saltare velocemente a una sezione):
-   1.  VARIABILI GLOBALI  ← qui cambi colori e font in un colpo solo
-   2.  RESET DI BASE
-   3.  UTILITY (reveal, link-arrow...)
-   4.  PRELOADER
-   5.  CURSORE CUSTOM
-   6.  GRANA / TEXTURE CINEMA
-   7.  HEADER
-   8.  HERO
-   9.  TESTO ANIMATO ALLO SCROLL (tra Hero e Chi sono)
-   10. CHI SONO
-   11. SERVIZI + HOVER PREVIEW
-   12. LAVORI (teaser)
-   13. QUOTE
-   14. CONTATTI / FOOTER
-   15. PAGINA LAVORI (lavori.html, i due pulsanti a schermo intero)
-   16. PAGINE PROGETTI (brand-comunicazione.html, eventi.html)
-   17. PAGINA PROGETTI PERSONALI (progetti-personali.html, a strisce)
-   18. PAGINA PROGETTO (dettaglio) — blocchi riutilizzabili
-   19. RESPONSIVE (mobile/tablet)
-   20. ACCESSIBILITÀ (riduzione animazioni)
-   ================================================================= */
-
-
-/* -----------------------------------------------------------------
-   1. VARIABILI GLOBALI
-   Tutto ciò che riguarda il "look" del sito parte da qui.
-   Cambia questi valori per modificare colori, font e spaziature
-   in tutte le pagine senza dover toccare il resto del CSS.
------------------------------------------------------------------ */
 :root {
-  /* Palette — atmosfera scura e cinematografica.
-     MODIFICA QUI se vuoi un'altra palette (es. più chiara). */
-  --color-bg: #0b0b0c;          /* sfondo principale, quasi nero */
-  --color-bg-alt: #111113;      /* sfondo leggermente diverso (sezioni alternate) */
-  --color-text: #f4f1ea;        /* testo principale, bianco caldo */
-  --color-text-dim: #9a968d;    /* testo secondario / grigio caldo */
-  --color-accent: #e86a33;      /* arancio bruciato — dettagli, hover, accenti "cinema" */
-  --color-line: rgba(244, 241, 234, 0.14); /* linee divisorie sottili */
+  --color-bg: #0b0b0c;
+  --color-bg-alt: #111113;
+  --color-text: #f4f1ea;
+  --color-text-dim: #9a968d;
+  --color-accent: #e86a33;
+  --color-line: rgba(244, 241, 234, 0.14);
 
-  /* Font.
-     - Display: titoli grandi → Anton, sans-serif condensato molto
-       pesante, stile "poster cinematografico" (ha un solo peso,
-       già di suo pesantissimo: non serve font-weight: bold)
-     - Body: testo corrente, UI → Courier Prime (monospace da
-       sceneggiatura/macchina da scrivere)
-     MODIFICA QUI se cambi i font nei tag <link> di index.html,
-     lavori.html e brand-comunicazione.html (tutte e 3 le pagine
-     caricano gli stessi font, vanno aggiornate insieme) */
   --font-display: "Anton", "Arial Narrow Bold", sans-serif;
   --font-body: "Courier Prime", "Courier New", monospace;
 
-  /* Spaziature sezione: distanza verticale tra i blocchi principali */
   --section-padding: clamp(5rem, 12vw, 10rem);
   --side-padding: clamp(1.5rem, 6vw, 5rem);
 
-  /* Timing delle transizioni, per coerenza in tutto il sito */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --duration: 0.6s;
 }
 
-
-/* -----------------------------------------------------------------
-   2. RESET DI BASE
------------------------------------------------------------------ */
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
@@ -79,17 +28,14 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
-  font-weight: 400; /* Courier Prime carica solo 400/700, niente 300 */
+  font-weight: 400;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-/* Mentre il preloader è attivo, blocchiamo lo scroll della pagina */
 body.is-loading { overflow: hidden; height: 100vh; }
 
-/* Mentre il lightbox della mini-galleria è aperto, blocchiamo lo
-   scroll della pagina sotto (vedi initGalleryLightbox() in main.js) */
 body.is-lightbox-open { overflow: hidden; }
 
 a {
@@ -111,14 +57,6 @@ img { max-width: 100%; display: block; }
 
 section { position: relative; }
 
-
-/* -----------------------------------------------------------------
-   3. UTILITY
------------------------------------------------------------------ */
-
-
-/* Link sottolineato, usato per le call to action testuali
-   (il nome della classe è storico: non ha più una freccia) */
 .link-arrow {
   display: inline-block;
   margin-top: 1.5rem;
@@ -129,9 +67,6 @@ section { position: relative; }
 }
 .link-arrow:hover { border-color: var(--color-accent); color: var(--color-accent); }
 
-/* Elementi con classe .reveal partono invisibili e leggermente
-   spostati in basso; main.js aggiunge .is-visible quando entrano
-   nel viewport (vedi initScrollReveal in main.js). */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -141,39 +76,15 @@ section { position: relative; }
   opacity: 1;
   transform: translateY(0);
 }
-/* Piccolo sfalsamento tra elementi vicini per un effetto "a cascata" */
 .hero__title .reveal:nth-child(1) { transition-delay: 0.05s; }
 .hero__title .reveal:nth-child(2) { transition-delay: 0.15s; }
-.hero__title .reveal:nth-child(3) { transition-delay: 0.25s; }
 
-/* Foto fisse decorative accanto a Hero e Chi sono (in homepage).
-   Grandi, sull'estremo bordo dello schermo (right:0 — non
-   var(--side-padding): proprio sul filo, non rientrata) e panoramiche
-   (16:9). Statiche apposta: non reagiscono al mouse (niente hover),
-   restano "normali" — solo l'animazione ".reveal" alla comparsa.
-   ".home-photo-frame" fa solo posizionamento: ancorata al bordo della
-   sezione (che ha già position:relative di suo, vedi "section {
-   position: relative; }" più sopra) e centrata in verticale.
-   Niente bordi netti: una maschera sfuma gradualmente i quattro lati
-   verso il trasparente, così la foto si dissolve nello sfondo scuro
-   invece di ritagliarsi come un rettangolo netto — due sfumature
-   lineari (orizzontale + verticale) invece di una sola radiale: la
-   radiale dava un alone rotondo/a fascio di luce, poco elegante;
-   così invece resta riconoscibile come rettangolo panoramico, solo
-   con i bordi ammorbiditi (vedi "mask-image" sotto — "mask-composite:
-   intersect" moltiplica le due sfumature, il fondo lo abbiamo giusto
-   agli angoli in più).
-   Nascosta sotto i 1150px: sotto quella soglia non c'è più spazio a
-   fianco del testo senza sovrapporsi (vedi sezione 19/RESPONSIVE).
-   MODIFICA QUI larghezza/proporzioni; il trattamento in bianco e
-   nero è pensato per restare coerente anche quando sostituirai le
-   foto di prova con quelle vere. */
 .home-photo-frame {
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: clamp(460px, 42vw, 820px);
+  width: clamp(540px, 50vw, 960px);
   aspect-ratio: 16 / 9;
   overflow: hidden;
   -webkit-mask-image:
@@ -185,25 +96,13 @@ section { position: relative; }
     linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
   mask-composite: intersect;
 }
-/* Quella della Hero è più larga delle altre (larghezza propria invece
-   di quella condivisa qui sopra, altezza indipendente invece che
-   derivata da un aspect-ratio) e spostata un po' più in basso: deve
-   arrivare almeno all'altezza dell'ultima riga di ".hero__subtitle".
-   Larghezza e altezza sono due clamp separati apposta, non un
-   aspect-ratio: così si può allargare quanto si vuole senza che
-   l'altezza cresca insieme (che invece andava già bene). Lo
-   spostamento in basso (+3rem, metà di "padding-top: 6rem" della
-   Hero) serve perché il testo della Hero è centrato verticalmente
-   nello spazio SOTTO quel padding-top, non nella sezione intera:
-   senza questo la foto (che invece si centra sulla sezione intera)
-   risulterebbe troppo in alto rispetto al testo. MODIFICA QUI se
-   cambi padding-top in ".hero" — lo spostamento va tenuto a metà di
-   quel valore. */
 .home-photo-frame--hero {
   top: calc(50% + 3rem);
   width: clamp(600px, 54vw, 980px);
   height: clamp(345px, 31.5vw, 615px);
-  aspect-ratio: auto; /* niente rapporto fisso: larghezza e altezza sopra sono indipendenti */
+  aspect-ratio: auto;
+  -webkit-mask-image: linear-gradient(to top, transparent 0, black 32px);
+  mask-image: linear-gradient(to top, transparent 0, black 32px);
 }
 .home-photo {
   width: 100%;
@@ -211,11 +110,10 @@ section { position: relative; }
   object-fit: cover;
   filter: grayscale(0.85) contrast(1.05) brightness(0.85);
 }
+.home-photo-frame--hero .home-photo {
+  filter: none;
+}
 
-
-/* -----------------------------------------------------------------
-   4. PRELOADER
------------------------------------------------------------------ */
 .preloader {
   position: fixed;
   inset: 0;
@@ -241,47 +139,20 @@ section { position: relative; }
   text-transform: uppercase;
   color: var(--color-text-dim);
 }
-/* Stato finale: il preloader scivola verso l'alto e sparisce */
 .preloader.is-done {
   transform: translateY(-100%);
   opacity: 0;
   pointer-events: none;
 }
 
-
-/* -----------------------------------------------------------------
-   5. CURSORE CUSTOM
-   Visibile solo su dispositivi con puntatore preciso (mouse/trackpad,
-   niente touch — vedi sezione 14/responsive). Il puntatore normale
-   del sistema resta sempre visibile (non lo nascondiamo mai): questo
-   gruppo aggiunge solo, sopra di esso, la scia "a griglia" (".cursor-
-   trail-cell" più sotto, fuori da ".cursor") e il caret lampeggiante
-   stile macchina da scrivere quando il mouse è
-   sopra un testo grande (".cursor__caret", in fondo a questa
-   sezione). Niente più puntino/mirino/etichetta: rimossi via via su
-   richiesta, bastano scia + caret.
------------------------------------------------------------------ */
 .cursor {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 150;
   pointer-events: none;
-  mix-blend-mode: difference; /* il cursore "inverte" i colori sotto di sé, effetto cinema */
+  mix-blend-mode: difference;
 }
-/* Scia "a griglia" che il mouse si lascia dietro muovendosi —
-   generata da initCursorTrail() in main.js: la pagina è divisa in
-   una griglia invisibile di celle (dimensione nella custom property
-   "--grid-trail-size", scritta da main.js) e ogni volta che il mouse
-   entra in una cella nuova ne "accende" i contorni, che poi
-   svaniscono. Riprende il quadrato/griglia del resto del sito (mirino
-   a squadre di prima, ora tolto; i quadratini del preloader) invece
-   di un punto libero. Fuori dal gruppo ".cursor" (niente
-   mix-blend-mode: difference) apposta, altrimenti non si vedrebbe
-   arancione ma un colore "invertito" diverso a seconda dello sfondo.
-   MODIFICA QUI colore/spessore/opacità per una scia più/meno
-   marcata; dimensione griglia e durata sono in main.js (la
-   transizione qui sotto deve durare quanto LIFETIME lì). */
 .cursor-trail-cell {
   position: fixed;
   top: 0;
@@ -290,7 +161,7 @@ section { position: relative; }
   height: var(--grid-trail-size);
   box-sizing: border-box;
   border: 2px solid var(--color-accent);
-  background: rgba(232, 106, 51, 0.22); /* var(--color-accent) a bassa opacità: rgba() non legge le variabili CSS, va tenuto in sync col colore sopra */
+  background: rgba(232, 106, 51, 0.22);
   pointer-events: none;
   z-index: 149;
   opacity: 1;
@@ -299,33 +170,6 @@ section { position: relative; }
   will-change: transform, opacity;
 }
 
-/* Stato "testo": quando il mouse passa sopra un titolo o una frase
-   in Courier Prime (elementi con data-cursor="text" in index.html),
-   punto e anello spariscono e al loro posto appare un caret —
-   la classica barretta verticale spessa, come il cursore di una
-   vecchia macchina da scrivere/terminale.
-
-   La dimensione non è fissa: main.js legge la font-size del testo
-   sotto il mouse e la scrive nella variabile --caret-size, così il
-   caret è sempre proporzionato al testo — enorme sul titolo hero,
-   più contenuto sui titoli piccoli. MODIFICA QUI i moltiplicatori
-   (0.22 / 1.15) per renderlo ancora più spesso/alto o più sottile.
-
-   Il colore del caret (--caret-color) segue quello del testo che
-   sta coprendo (impostato da main.js): siccome il cursore usa
-   mix-blend-mode: difference (vedi ".cursor" più sopra), un colore
-   identico a quello del testo sotto produce nero — è per questo che
-   il testo "sparisce" diventando nero al passaggio del caret, sia
-   che sia bianco (--color-text) sia che sia arancio (--color-accent).
-
-   IMPORTANTE: "transform" (il translate che lo fa seguire il mouse,
-   aggiornato da main.js ad ogni movimento) resta FUORI dalla
-   transition qui sotto, di proposito. Se ci fosse una transizione
-   anche lì, muovendo il mouse in fretta il caret "insegue" la nuova
-   posizione con un piccolo ritardo invece di seguirla subito — con
-   mix-blend-mode: difference quel ritardo si vede come una scia di
-   "fotogrammi fantasma" dietro al cursore. Bug preso e risolto così:
-   niente transizione sulla posizione, solo su opacità/dimensioni. */
 .cursor__caret {
   position: fixed;
   width: calc(var(--caret-size, 48px) * 0.22);
@@ -339,17 +183,8 @@ section { position: relative; }
 }
 .cursor.is-text-hovering .cursor__caret {
   opacity: 1;
-  /* Fisso, senza lampeggio: MODIFICA QUI se in futuro lo vuoi di
-     nuovo intermittente — basta rimettere una regola "animation". */
 }
 
-
-/* -----------------------------------------------------------------
-   6. GRANA / TEXTURE CINEMA
-   Overlay statico che aggiunge una leggerissima grana simile a
-   pellicola su tutta la pagina — dettaglio che rinforza l'estetica
-   cinematografica. Puro CSS, nessuna immagine da caricare.
------------------------------------------------------------------ */
 .grain {
   position: fixed;
   inset: 0;
@@ -360,16 +195,6 @@ section { position: relative; }
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
-
-/* -----------------------------------------------------------------
-   7. HEADER
-   È fissa in cima (position: fixed) così resta visibile durante lo
-   scroll. Per questo motivo ha bisogno di uno sfondo (qui semi-
-   trasparente + sfocato, effetto "vetro") altrimenti il testo delle
-   sezioni sottostanti le passerebbe dietro e sembrerebbe sovrapporsi
-   al logo/menu. MODIFICA QUI --color-bg-alt/opacità se vuoi un header
-   più o meno trasparente.
------------------------------------------------------------------ */
 .site-header {
   position: fixed;
   top: 0;
@@ -382,14 +207,12 @@ section { position: relative; }
   padding: 1.75rem var(--side-padding);
   font-size: 0.85rem;
   letter-spacing: 0.02em;
-  background: rgba(11, 11, 12, 0.7); /* stesso tono di --color-bg, semi-trasparente */
+  background: rgba(11, 11, 12, 0.7);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;
   transition: border-color var(--duration) var(--ease);
 }
-/* Quando si scrolla, la pagina aggiunge .is-scrolled al body (main.js)
-   così mostriamo anche una sottile linea di separazione sotto l'header */
 body.is-scrolled .site-header {
   border-bottom-color: var(--color-line);
 }
@@ -398,8 +221,6 @@ body.is-scrolled .site-header {
   display: flex;
   align-items: center;
 }
-/* Altezza del logo nell'header. MODIFICA QUI se il tuo PNG ha proporzioni
-   diverse: la larghezza si adatta da sola (width: auto sotto). */
 .site-header__logo img {
   height: 70px;
   width: auto;
@@ -413,7 +234,6 @@ body.is-scrolled .site-header {
   position: relative;
   padding-bottom: 0.2rem;
 }
-/* piccola linea che si allarga da sinistra a destra al passaggio del mouse */
 .site-header__nav a::after {
   content: "";
   position: absolute;
@@ -427,18 +247,13 @@ body.is-scrolled .site-header {
 .site-header__nav a:hover::after { width: 100%; }
 
 .site-header__cta {
-  border: 1px solid var(--color-accent); /* bordo accentato sempre visibile, non solo in hover */
+  border: 1px solid var(--color-accent);
   border-radius: 999px;
   padding: 0.5rem 1.1rem;
   transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease);
 }
-/* Hover: si riempie di colore invece di limitarsi a schiarire il bordo */
 .site-header__cta:hover { background-color: var(--color-accent); color: var(--color-bg); }
 
-
-/* -----------------------------------------------------------------
-   8. HERO
------------------------------------------------------------------ */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -465,53 +280,27 @@ body.is-scrolled .site-header {
 .hero__title span { display: block; }
 
 .hero__subtitle {
-  margin-top: 2rem; /* stacca il paragrafo dal titolo sopra */
+  margin-top: 2rem;
   max-width: 42ch;
   font-size: clamp(1rem, 1.4vw, 1.15rem);
-  line-height: 1.7; /* spazio tra le righe separate da <br> nel testo. MODIFICA QUI per avvicinarle/allontanarle */
+  line-height: 1.7;
   color: var(--color-text-dim);
 }
 
-
-/* -----------------------------------------------------------------
-   9. TESTO ANIMATO ALLO SCROLL (tra Hero e Chi sono)
-   Stesso font/taglia del titolo hero, sulla destra. Effetto
-   "macchina da scrivere": mentre si scrolla, i caratteri compaiono
-   uno alla volta, pieni e a fuoco da subito (nessuna dissolvenza/
-   trasparenza intermedia) — legato in continuo alla posizione di
-   scroll, non un semplice reveal on/off.
-
-   initScrollText() in main.js spezza il testo in tanti
-   <span class="scroll-text__char"> (uno per carattere, invisibili
-   di default) e via via ne aggiunge la classe "is-typed" man mano
-   che si scrolla. Nessun testo duplicato/nascosto per ottenere
-   l'effetto: sono gli stessi caratteri veri del testo, quindi resta
-   pulito per gli screen reader.
-
-   Niente spazio sopra/sotto (padding verticale a 0): la sezione
-   resta attaccata a Hero e Chi Sono, senza vuoti tra le tre.
-
-   MODIFICA QUI: in main.js i riferimenti "START_VH"/"END_VH" per
-   allungare o accorciare la distanza di scroll su cui avviene la
-   "battitura".
------------------------------------------------------------------ */
 .scroll-text {
-  padding: 0 var(--side-padding); /* solo laterale: nessun vuoto verticale prima/dopo */
+  padding: 0 var(--side-padding);
   display: flex;
-  justify-content: flex-end; /* il testo sta sulla destra dello schermo */
+  justify-content: flex-end;
 }
 .scroll-text__text {
-  margin: 0; /* il <p> di default avrebbe un margine verticale tutto suo: lo togliamo, altrimenti riapre lo spazio che non vogliamo tra Hero e Chi Sono */
+  margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.96rem, 4.53vw, 3.91rem); /* più piccola del titolo hero: distende il testo in orizzontale (poche righe larghe) e tiene basso il blocco, per stare vicini a Hero e Chi Sono */
+  font-size: clamp(1.96rem, 4.53vw, 3.91rem);
   line-height: 1;
-  max-width: 30ch; /* larghezza tarata per andare a capo 4/5 volte */
+  max-width: 30ch;
   text-align: right;
   color: var(--color-accent);
 }
-/* Carattere non ancora "digitato": invisibile ma occupa comunque il
-   suo spazio, così le righe non si spostano/allargano man mano che
-   il testo compare — sono già tutte al loro posto fin da subito. */
 .scroll-text__char {
   visibility: hidden;
 }
@@ -519,17 +308,7 @@ body.is-scrolled .site-header {
   visibility: visible;
 }
 
-
-/* -----------------------------------------------------------------
-   10. CHI SONO
------------------------------------------------------------------ */
 .about {
-  /* Sopra: meno dello spacing standard, per stare più vicini al testo
-     animato sopra; sotto: lo spacing standard del sito. Niente
-     max-width qui (a differenza di prima): resta a tutta larghezza
-     apposta, così ".home-photo-frame" (right:0) arriva fino al bordo
-     estremo dello schermo — il testo ha la sua larghezza massima
-     dentro ".about__inner". */
   padding: 5.5rem var(--side-padding) var(--section-padding);
 }
 .about__inner {
@@ -551,10 +330,6 @@ body.is-scrolled .site-header {
   font-size: 1.05rem;
 }
 
-
-/* -----------------------------------------------------------------
-   11. SERVIZI + HOVER PREVIEW
------------------------------------------------------------------ */
 .services {
   padding: var(--section-padding) var(--side-padding);
   background: var(--color-bg-alt);
@@ -591,22 +366,10 @@ body.is-scrolled .site-header {
   text-align: right;
 }
 
-
-/* -----------------------------------------------------------------
-   12. LAVORI (teaser)
------------------------------------------------------------------ */
 .work {
-  /* Sopra: un po' meno dello spacing standard (var(--section-padding),
-     usato invece sotto): niente vuoto eccessivo tra "Cosa faccio" e
-     "Portfolio". */
   padding: calc(var(--section-padding) * 0.55) var(--side-padding) var(--section-padding);
 }
 
-/* Non una griglia di "card" ma due pulsanti che dividono a metà lo
-   spazio della sezione, edge-to-edge (nessun max-width, nessun gap:
-   riempiono tutta la larghezza disponibile). MODIFICA QUI se in
-   futuro vuoi più di 2 pagine: aggiungi un altro <a class="work-card">
-   in index.html e cambia "repeat(2, 1fr)" in "repeat(3, 1fr)" ecc. */
 .work__grid {
   margin-top: 3.5rem;
   display: grid;
@@ -614,7 +377,7 @@ body.is-scrolled .site-header {
 }
 
 .work-card {
-  min-height: clamp(22rem, 38vw, 32rem); /* pulsante grande, non una piccola card */
+  min-height: clamp(22rem, 38vw, 32rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -624,14 +387,9 @@ body.is-scrolled .site-header {
   overflow: hidden;
   transition: filter var(--duration) var(--ease);
 }
-/* Linea sottile a dividere visivamente i due pulsanti */
 .work-card + .work-card {
   border-left: 1px solid var(--color-line);
 }
-/* Sfondo sfumato placeholder — un colore diverso per pulsante, così
-   restano distinguibili. MODIFICA QUI quando avrai un'immagine reale
-   per "Lavori" e per "Progetti personali": sostituisci il gradiente
-   con background-image: url(...) sul relativo :nth-child(). */
 .work-card:nth-child(1) { background: linear-gradient(160deg, #1a1712, #23201c 60%); }
 .work-card:nth-child(2) { background: linear-gradient(160deg, #131313, #1a1a1c 60%); }
 .work-card:hover { filter: brightness(1.2); }
@@ -644,23 +402,10 @@ body.is-scrolled .site-header {
 }
 .work-card:hover .work-card__title { color: var(--color-accent); }
 
-/* ---- Carosello loghi clienti ----
-   Striscia che scorrerebbe all'infinito sotto i due pulsanti (stesso
-   trucco della vecchia marquee: contenuto duplicato in due
-   ".logos-carousel__group" nell'HTML, traslazione da 0 a -50% così il
-   loop non si vede, in pausa al passaggio del mouse) — ma con solo 2
-   loghi (in assets/img/loghi clienti/) non ha senso farla scorrere,
-   quindi per ora resta ferma e centrata: ".logos-carousel--static" fa
-   proprio questo, disattivando l'animazione qui sotto senza toccarla,
-   pronta per quando i loghi saranno di più.
-   MODIFICA QUI: quando ne avrai altri, in index.html togli la classe
-   "logos-carousel--static" e rimetti la lista duplicata nei due
-   .logos-carousel__group (vedi il commento lì) — le dimensioni
-   dell'immagine sono già gestite qui sotto. */
 .logos-carousel {
   margin-top: 4rem;
   padding-bottom: 3rem;
-  border-bottom: 1px solid var(--color-line); /* sotto, non sopra: separa il carosello dalla galleria qui sotto, "accorpandolo" invece al Portfolio sopra */
+  border-bottom: 1px solid var(--color-line);
   overflow: hidden;
 }
 .logos-carousel__track {
@@ -669,17 +414,18 @@ body.is-scrolled .site-header {
   animation: logosScroll 32s linear infinite;
 }
 .logos-carousel:hover .logos-carousel__track { animation-play-state: paused; }
-/* Niente scorrimento con solo 2 loghi: track ferma, larga quanto il
-   contenitore e centrata (invece di "width: max-content", pensato per
-   affiancare le due copie della lista e farle scorrere). */
 .logos-carousel--static .logos-carousel__track {
   animation: none;
   width: 100%;
   justify-content: center;
 }
-.logos-carousel__group { display: flex; align-items: center; }
+.logos-carousel__group { display: flex; align-items: flex-start; }
 
 .logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
   flex-shrink: 0;
   padding: 0 3rem;
   font-size: 0.85rem;
@@ -691,34 +437,30 @@ body.is-scrolled .site-header {
   transition: opacity var(--duration) var(--ease), color var(--duration) var(--ease);
 }
 .logo-item:hover { opacity: 1; color: var(--color-text); }
-/* Quando un logo-item conterrà un'immagine invece di testo */
+.logo-item__caption {
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+  opacity: 0.7;
+  transition: color var(--duration) var(--ease), opacity var(--duration) var(--ease);
+}
+.logo-item:hover .logo-item__caption { color: var(--color-text); opacity: 1; }
 .logo-item img {
   height: 28px;
   width: auto;
-  filter: grayscale(1) brightness(1.6); /* logo in scala di grigi, si "accende" in hover */
+  filter: grayscale(1) brightness(1.6);
   opacity: 0.6;
   transition: opacity var(--duration) var(--ease), filter var(--duration) var(--ease);
 }
 .logo-item:hover img { opacity: 1; filter: grayscale(0) brightness(1); }
+.logo-item img.logo-item__img--gripmoto { height: 34px; }
 
 @keyframes logosScroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 
-/* Mini galleria sotto il carosello loghi: un mosaico (non uno slider
-   orizzontale, tolto perché "non si abbinava" al resto del sito) —
-   una griglia con qualche foto più grande (".gallery-strip__img--big",
-   2x2 celle) sparsa in mezzo alle altre per dare ritmo, come una
-   parete di foto vera. "grid-auto-flow: dense" riempie i buchi che le
-   foto grandi lascerebbero, invece di lasciare celle vuote.
-   Come le foto fisse di Hero/Chi sono, si dissolve ai bordi invece di
-   avere un taglio netto (stesso "mask-image" a doppia sfumatura, qui
-   su tutti e 4 i lati visto che il blocco è circondato dallo sfondo
-   scuro anche a sinistra/destra).
-   Un clic apre la foto nel lightbox (vedi initGalleryLightbox() in
-   main.js) — l'hover resta leggero (solo colore/luce, niente zoom)
-   apposta, per un effetto più calmo. */
 .gallery-strip {
   max-width: 1100px;
   margin: 5.5rem auto 0;
@@ -742,7 +484,7 @@ body.is-scrolled .site-header {
   object-fit: cover;
   filter: grayscale(0.85) contrast(1.05) brightness(0.85);
   transition: filter 0.4s var(--ease);
-  cursor: pointer; /* si può aprire nel lightbox con un clic */
+  cursor: pointer;
 }
 .gallery-strip__img--big {
   grid-column: span 2;
@@ -752,20 +494,11 @@ body.is-scrolled .site-header {
   filter: grayscale(0) contrast(1.05) brightness(1);
 }
 
-/* Sotto i 640px la griglia a 4 colonne schiaccerebbe troppo le foto:
-   passiamo a 2 e le foto "grandi" tornano normali (2x2 celle da 2 non
-   avrebbe più senso, occuperebbe tutta la riga). */
 @media (max-width: 640px) {
   .gallery-strip { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 120px; }
   .gallery-strip__img--big { grid-column: span 1; grid-row: span 1; }
 }
 
-/* Lightbox della mini-galleria: overlay a schermo intero con la foto
-   cliccata ingrandita, frecce avanti/indietro e chiusura. Parte
-   invisibile/non cliccabile (opacity:0, pointer-events:none); JS
-   aggiunge ".is-open" per mostrarlo — vedi initGalleryLightbox() in
-   main.js. MODIFICA QUI dimensioni/colori; la logica (quale foto
-   mostrare, tasti freccia, Esc) è tutta in main.js. */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -819,10 +552,6 @@ body.is-scrolled .site-header {
 .lightbox__nav--prev { left: 0.5rem; }
 .lightbox__nav--next { right: 0.5rem; }
 
-
-/* -----------------------------------------------------------------
-   13. QUOTE
------------------------------------------------------------------ */
 .quote {
   padding: var(--section-padding) var(--side-padding);
   background: var(--color-bg-alt);
@@ -847,10 +576,6 @@ body.is-scrolled .site-header {
   color: var(--color-accent);
 }
 
-
-/* -----------------------------------------------------------------
-   14. CONTATTI / FOOTER
------------------------------------------------------------------ */
 .contact {
   padding: var(--section-padding) var(--side-padding) 3rem;
   text-align: center;
@@ -894,67 +619,26 @@ body.is-scrolled .site-header {
   color: var(--color-text-dim);
 }
 
-
-/* -----------------------------------------------------------------
-   15. PAGINA LAVORI (lavori.html) — due pulsanti a schermo intero
-   Riusa esattamente gli stessi .work-card della sezione "Portfolio"
-   in homepage (stesso linguaggio visivo), ma qui riempiono quasi
-   tutta l'altezza della pagina invece di una porzione di sezione:
-   .lavori-page è un contenitore flex verticale alto quanto lo
-   schermo, e la griglia dei due pulsanti (unico contenuto della
-   sezione, nessuna intestazione) occupa tutto lo spazio (flex: 1).
------------------------------------------------------------------ */
 .lavori-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 6rem; /* spazio per non finire sotto l'header fisso */
+  padding-top: 6rem;
 }
 
-/* Modificatore da aggiungere a .work__grid quando i pulsanti devono
-   riempire tutta l'altezza disponibile (pagina dedicata) invece che
-   una semplice sezione della homepage. */
 .work__grid--full {
   flex: 1;
   height: 100%;
   grid-template-rows: 1fr;
 }
 .work__grid--full .work-card {
-  min-height: 0; /* qui l'altezza arriva dal contenitore, non serve un minimo fisso */
+  min-height: 0;
   height: 100%;
 }
 
-
-/* -----------------------------------------------------------------
-   16. PAGINE PROGETTI (brand-comunicazione.html, eventi.html)
-   Componente condiviso dalle pagine "elenco progetti" di ogni
-   ambito. Due parti:
-   a) .word-pattern — lo sfondo particolare: le parole di quell'ambito
-      (in brand-comunicazione.html: UX, UI, Copywriting...; in
-      eventi.html: Fotografia, Filmmaking) scorrono su righe alternate
-      dietro al contenuto, come una "carta da parati" cinetica. Fisso
-      a schermo, z-index basso con main/footer esplicitamente sopra
-      (vedi sotto), leggermente ruotato per un effetto poster. Stesso
-      trucco della vecchia marquee: il contenuto è ripetuto due volte
-      nell'HTML e la traslazione va da 0 a -50%, quindi il loop non
-      si vede.
-   b) .projects-grid / .project-card — un pulsante per progetto,
-      stesso linguaggio visivo dei .work-card (sfondo sfumato,
-      titolo in Courier Prime) ma più piccoli e in griglia, pensati
-      per un elenco che crescerà nel tempo.
-
-   MODIFICA QUI: per una nuova pagina "elenco progetti" (es. per
-   "Cinema"), copia eventi.html, cambia le parole nel .word-pattern
-   e i contenuti di .projects-grid — non serve toccare questo CSS.
------------------------------------------------------------------ */
 .word-pattern {
   position: fixed;
-  inset: -10%; /* leggermente più grande dello schermo, così la rotazione non lascia angoli vuoti */
-  /* z-index basso ma NON negativo: gli z-index negativi su elementi
-     "fixed" sono poco affidabili (in alcuni browser finiscono dietro
-     allo sfondo della pagina invece che sopra, diventando invisibili).
-     Qui il pattern sta a 0 e il contenuto vero (main/footer, vedi
-     sotto) sta esplicitamente a 1: ordine garantito, niente trucchi. */
+  inset: -10%;
   z-index: 0;
   display: flex;
   flex-direction: column;
@@ -963,9 +647,6 @@ body.is-scrolled .site-header {
   overflow: hidden;
   pointer-events: none;
 }
-/* Il contenuto vero della pagina deve stare sopra al pattern.
-   Selettore "~" = si applica solo alle pagine che hanno davvero un
-   .word-pattern come fratello precedente (qui, solo brand-comunicazione.html). */
 .word-pattern ~ main,
 .word-pattern ~ footer {
   position: relative;
@@ -978,17 +659,12 @@ body.is-scrolled .site-header {
   white-space: nowrap;
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 5.4vw, 4rem);
-  color: var(--color-line); /* tenue: è uno sfondo, non deve competere col contenuto */
+  color: var(--color-line);
   animation: wordScroll 44s linear infinite;
 }
 .word-pattern__track span {
   padding: 0 1.5rem;
 }
-/* Righe alterne che scorrono in direzione opposta, per un effetto
-   meno meccanico. MODIFICA QUI: per aggiungere altre righe al
-   pattern, duplica un blocco .word-pattern__row in brand-comunicazione.html
-   — l'alternanza di direzione si applica da sola, non serve
-   toccare il CSS. */
 .word-pattern__row:nth-child(even) .word-pattern__track {
   animation-name: wordScrollReverse;
   animation-duration: 34s;
@@ -1002,23 +678,14 @@ body.is-scrolled .site-header {
   to { transform: translateX(0); }
 }
 
-/* ---- Griglia progetti ---- */
-/* Nessuna intestazione sopra: solo i pulsanti-progetto. Il
-   padding-top serve a non finire sotto l'header fisso. */
 .projects {
   padding: 11rem var(--side-padding) var(--section-padding);
 }
 .projects-grid {
   display: grid;
-  /* auto-fit + minmax: si adatta da solo al numero di progetti,
-     nessun calcolo manuale di colonne quando ne aggiungi/togli */
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
 }
-/* Sfondo sfumato placeholder, uguale per tutte le card (per ora).
-   MODIFICA QUI quando avrai le immagini reali dei progetti:
-   sostituisci con background-image: url(...) su ciascuna .project-card,
-   magari una tinta diversa per progetto per distinguerle a colpo d'occhio. */
 .project-card {
   aspect-ratio: 4 / 3;
   border-radius: 4px;
@@ -1044,10 +711,6 @@ body.is-scrolled .site-header {
 }
 .project-card:hover .project-card__title { color: var(--color-accent); }
 
-/* Card progetto ancora senza pagina vera (un <div>, non un <a>: non
-   deve aprire nulla) — niente sollevamento/schiarimento al passaggio
-   del mouse, giusto un'etichetta "Lavori in corso" sopra il titolo,
-   per non lasciarla identica alle card cliccabili. */
 .project-card--empty {
   cursor: default;
 }
@@ -1064,17 +727,6 @@ body.is-scrolled .site-header {
   color: var(--color-text-dim);
 }
 
-
-/* -----------------------------------------------------------------
-   17. PAGINA PROGETTI PERSONALI (progetti-personali.html)
-   Stile volutamente diverso dalle altre due pagine "elenco progetti":
-   niente card in griglia, ma una striscia a tutta larghezza per ogni
-   progetto, con una vera anteprima accanto al testo (non più solo il
-   riquadro fantasma che segue il cursore). Le strisce si alternano:
-   dispari = testo a sinistra / anteprima a destra, pari = anteprima
-   a sinistra / testo a destra — tramite "order" sui due blocchi,
-   senza dover scrivere due markup diversi in HTML.
------------------------------------------------------------------ */
 .strip-list {
   padding: 8rem var(--side-padding) var(--section-padding);
 }
@@ -1091,18 +743,11 @@ body.is-scrolled .site-header {
 .project-strip:first-child { border-top: 1px solid var(--color-line); }
 .project-strip:hover { padding-left: 1rem; }
 
-/* Ordine di base: testo (1) poi anteprima (2) → testo a sinistra.
-   MODIFICA QUI se preferisci partire con l'anteprima a sinistra:
-   basta scambiare gli "order" qui sotto e nel :nth-child(even). */
 .project-strip__body { order: 1; }
 .project-strip__preview { order: 2; }
-/* Righe pari: layout invertito (anteprima a sinistra, testo a destra) */
 .project-strip:nth-child(even) .project-strip__body { order: 2; }
 .project-strip:nth-child(even) .project-strip__preview { order: 1; }
 
-/* Sfondo sfumato placeholder. MODIFICA QUI quando avrai le immagini
-   reali dei progetti: sostituisci con background-image: url(...)
-   su ciascuna .project-strip__preview (o sul relativo :nth-child()). */
 .project-strip__preview {
   aspect-ratio: 4 / 3;
   border-radius: 4px;
@@ -1118,7 +763,7 @@ body.is-scrolled .site-header {
 
 .project-strip__title {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3.2vw, 2.6rem); /* più piccolo di prima: ora condivide lo spazio con l'anteprima */
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
   color: var(--color-text);
   transition: color var(--duration) var(--ease);
 }
@@ -1130,26 +775,6 @@ body.is-scrolled .site-header {
   color: var(--color-text-dim);
 }
 
-
-/* -----------------------------------------------------------------
-   18. PAGINA PROGETTO (dettaglio) — BLOCCHI RIUTILIZZABILI
-   Questi sono i "mattoncini" usati da ogni pagina di progetto
-   (the_social_prosthesis.html, il-broccolo-americano.html,
-   stand-out-dont-fit-in.html, ecc.). Ogni progetto è libero di usare
-   solo i blocchi che gli servono:
-   - .project-hero        → sempre presente: titolo, meta, copertina
-   - .project-body__text  → un paragrafo di testo (quanti ne vuoi)
-   - .project-video       → un video (o il suo segnaposto)
-   - .project-gallery     → una galleria di immagini (quante ne vuoi)
-   - .project-document    → un file scaricabile (es. PDF) come card
-   - .project-quote       → una citazione in evidenza
-   - .project-artwork     → una singola immagine a piena risoluzione,
-                             non ritagliata (per grafiche, locandine...)
-   Per un nuovo progetto: duplica una pagina esistente e adatta i
-   blocchi — vedi "Come aggiungere un nuovo progetto" in README.md.
------------------------------------------------------------------ */
-
-/* ---- Hero del progetto: link indietro, titolo, meta, copertina ---- */
 .project-hero {
   padding: 8rem var(--side-padding) 0;
 }
@@ -1168,8 +793,6 @@ body.is-scrolled .site-header {
   max-width: 18ch;
 }
 
-/* Riga di metadati: Cliente / Anno / Ruolo ecc. Aggiungine o
-   toglighine quanti ne vuoi, sono semplici coppie etichetta+valore. */
 .project-hero__meta {
   display: flex;
   flex-wrap: wrap;
@@ -1194,21 +817,17 @@ body.is-scrolled .site-header {
   color: var(--color-text);
 }
 
-/* Immagine di copertina: la stessa che compare come anteprima nella
-   pagina elenco (griglia/striscia). MODIFICA QUI quando avrai la foto
-   vera: sostituisci il gradiente con background-image: url(...). */
 .project-hero__cover {
-  margin: 3.5rem auto 0; /* "auto" sui lati = centrata, non più attaccata a sinistra */
-  max-width: 900px; /* stessa larghezza del corpo del progetto (.project-body) */
+  margin: 3.5rem auto 0;
+  max-width: 900px;
   aspect-ratio: 16 / 9;
-  max-height: 30rem; /* altrimenti su schermi larghi diventa enorme (16:9 a tutta larghezza). MODIFICA QUI per renderla più o meno alta */
+  max-height: 30rem;
   border-radius: 4px;
   background: linear-gradient(160deg, #1a1712, #23201c 60%);
   background-size: cover;
   background-position: center;
 }
 
-/* ---- Corpo del progetto: testo, video, galleria in colonna ---- */
 .project-body {
   max-width: 900px;
   margin: 0 auto;
@@ -1225,11 +844,6 @@ body.is-scrolled .site-header {
 }
 .project-body__text strong { color: var(--color-text); font-weight: 700; }
 
-/* Video: o il segnaposto con l'icona play (<div class="project-video">),
-   o — quando c'è un video vero — lo stesso identico aspect-ratio 16/9
-   applicato direttamente a un <iframe class="project-video"> (YouTube/
-   Vimeo) o <video class="project-video" controls>. "overflow: hidden"
-   serve a far rispettare l'angolo arrotondato anche all'iframe/video. */
 .project-video {
   position: relative;
   aspect-ratio: 16 / 9;
@@ -1264,12 +878,6 @@ video.project-video {
   transform: scale(1.08);
 }
 
-/* Galleria: griglia che si adatta da sola al numero di immagini.
-   MODIFICA QUI: aggiungi/togli .project-gallery__item quante ne
-   vuoi, e sostituisci i gradienti con background-image: url(...).
-   Aggiungi la classe "project-gallery__item--wide" a un'immagine
-   per farla occupare tutta la larghezza (utile per una foto "hero"
-   in mezzo alla galleria, tipica delle identità visive). */
 .project-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1285,17 +893,12 @@ video.project-video {
   grid-column: 1 / -1;
   aspect-ratio: 16 / 9;
 }
-/* 5 toni diversi in sequenza, così le immagini placeholder restano
-   distinguibili tra loro anche prima di avere le foto vere */
 .project-gallery__item:nth-child(5n+1) { background-image: linear-gradient(160deg, #1a1712, #23201c 65%); }
 .project-gallery__item:nth-child(5n+2) { background-image: linear-gradient(160deg, #131313, #1a1a1c 60%); }
 .project-gallery__item:nth-child(5n+3) { background-image: linear-gradient(160deg, #17130e, #201c16 60%); }
 .project-gallery__item:nth-child(5n+4) { background-image: linear-gradient(160deg, #1c1712, #241e17 60%); }
 .project-gallery__item:nth-child(5n+5) { background-image: linear-gradient(160deg, #141414, #1e1e1e 60%); }
 
-/* Documento scaricabile (es. PDF di una sceneggiatura/script): una
-   card cliccabile invece di un noioso link nudo. MODIFICA QUI icona
-   e testo; l'href punta al file reale in assets/img/progetti/. */
 .project-document {
   display: flex;
   align-items: center;
@@ -1329,8 +932,6 @@ video.project-video {
   color: var(--color-text-dim);
 }
 
-/* Citazione dentro al corpo del progetto — stessa identità del
-   corsivo accentato usato altrove sul sito (em in Anton, sghembo). */
 .project-quote {
   font-family: var(--font-display);
   font-style: italic;
@@ -1342,9 +943,6 @@ video.project-video {
   padding-left: 1.5rem;
 }
 
-/* Artwork singola a tutta risoluzione (non ritagliata come nella
-   griglia .project-gallery): usa un vero <img>, non uno sfondo, così
-   il rapporto d'aspetto originale resta intatto qualunque esso sia. */
 .project-artwork {
   display: block;
   width: 100%;
@@ -1353,62 +951,42 @@ video.project-video {
   border-radius: 4px;
 }
 
-
-/* -----------------------------------------------------------------
-   19. RESPONSIVE
------------------------------------------------------------------ */
-
-/* Nascondi il cursore custom e ripristina quello di sistema sui
-   dispositivi touch, dove non ha senso (niente mouse da inseguire) */
 @media (pointer: coarse) {
   .cursor { display: none; }
 }
 
-/* Foto fisse decorative (Hero/Chi sono): sotto questa soglia il testo
-   non ha più spazio a fianco senza sovrapporsi, quindi le togliamo —
-   soglia diversa/più larga dei restanti riadattamenti mobile qui
-   sotto (a 860px), che riguardano tutt'altro. */
 @media (max-width: 1150px) {
   .home-photo-frame { display: none; }
 }
 
 @media (max-width: 860px) {
-  .site-header__nav { display: none; } /* su mobile teniamo solo logo + CTA */
+  .site-header__nav { display: none; }
 
-  /* Frecce del lightbox più piccole: a schermo intero su un telefono
-     4rem sarebbe sproporzionato rispetto alla foto */
   .lightbox__nav { font-size: 2.5rem; padding: 0.5rem; }
 
   .services__row { flex-wrap: wrap; }
   .services__desc { text-align: left; width: 100%; order: 3; margin-top: 0.5rem; }
 
-  .work__grid { grid-template-columns: 1fr; } /* i 2 pulsanti si impilano invece di dividersi in colonne */
+  .work__grid { grid-template-columns: 1fr; }
   .work-card + .work-card { border-left: none; border-top: 1px solid var(--color-line); }
-  /* Impilati, i due pulsanti a schermo intero (lavori.html) tornano
-     ad avere ciascuno un'altezza minima invece di dividersi un'unica riga */
   .work__grid--full { grid-template-rows: none; }
   .work__grid--full .work-card { height: auto; min-height: 16rem; }
 
   .contact__meta { flex-direction: column; gap: 0.75rem; text-align: center; }
 
-  /* Le strisce progetto vanno in colonna (anteprima sopra, testo
-     sotto) invece che affiancate, e l'alternanza sinistra/destra
-     non ha più senso su schermi stretti: la disattiviamo. */
   .project-strip { grid-template-columns: 1fr; gap: 1.25rem; }
   .project-strip__body,
   .project-strip:nth-child(even) .project-strip__body { order: 2; }
   .project-strip__preview,
   .project-strip:nth-child(even) .project-strip__preview { order: 1; }
 
-  /* Meta del progetto (Cliente/Anno/Ruolo...) impilati invece che
-     in riga, così non si schiacciano su schermi stretti */
   .project-hero__meta { flex-direction: column; gap: 1.25rem; }
 }
 
+@media (max-width: 400px) {
+  .site-header__logo img { height: 52px; }
+}
 
-/* -----------------------------------------------------------------
-   20. ACCESSIBILITÀ — rispetta chi preferisce meno animazioni
------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal, .preloader, .work-card, .cursor__caret, .project-card, .word-pattern__track, .logos-carousel__track {

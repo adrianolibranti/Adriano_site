@@ -1,90 +1,29 @@
 <!DOCTYPE html>
-<!--
-  =============================================================
-  SITO PORTFOLIO — ADRIANO LIBRANTI
-  Creative Strategist — Storytelling / Copy / Design / UX / Cinema
-  =============================================================
-  Questo file contiene SOLO la Homepage. Struttura pensata per
-  essere facile da leggere e modificare anche senza esperienza
-  avanzata di sviluppo: ogni sezione è commentata e delimitata
-  chiaramente. Cerca "MODIFICA QUI" per trovare i punti dove
-  cambiare testi, link e immagini più di frequente.
-
-  Struttura cartelle:
-  - index.html            → questa pagina
-  - assets/css/style.css  → tutti gli stili (colori, font, layout)
-  - assets/js/main.js     → interazioni (cursore, hover, reveal)
-  - assets/img/           → dove mettere le immagini reali
-
-  Ispirazione estetica: floema.com — tipografia grande,
-  atmosfera cinematografica, micro-interazioni al passaggio
-  del mouse, transizioni morbide.
--->
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adriano Libranti | Creative Strategist </title>
   <meta name="description" content="Adriano Libranti — Creative Strategist. Storytelling, copywriting, design, UX e linguaggio cinematografico al servizio dei brand.">
-
-  <!-- ===========================================================
-       FONT: Anton (sans-serif condensato molto pesante, stile
-       "poster cinematografico", per i titoli grandi) + Courier Prime
-       (monospace da sceneggiatura/macchina da scrivere, per testi e
-       UI). Se vuoi cambiare i font basta sostituire questo link e le
-       variabili --font-display / --font-body in assets/css/style.css
-  =========================================================== -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="assets/css/style.css?v=30">
+  <link rel="stylesheet" href="assets/css/style.css?v=42">
 </head>
 <body id="top">
-
-  <!-- ===========================================================
-       PRELOADER
-       Schermata nera iniziale con conteggio percentuale, effetto
-       "apertura di sipario" cinematografico. Si nasconde da sola
-       quando la pagina è pronta (vedi main.js → initPreloader).
-  =========================================================== -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <span class="preloader__count" id="preloaderCount">0</span>
     <span class="preloader__label">Adriano Libranti</span>
   </div>
 
-  <!-- ===========================================================
-       CURSORE PERSONALIZZATO
-       Il puntatore normale del sistema resta sempre visibile (non lo
-       nascondiamo mai, niente puntino/mirino/etichette nostri: tolti
-       via via su richiesta). Sopra di esso: un "caret" (barretta
-       lampeggiante stile macchina da scrivere) che compare sopra i
-       testi principali del sito, quelli in Courier Prime — vedi gli
-       attributi data-cursor="text" nelle varie sezioni qui sotto — e
-       una scia "a griglia" che il mouse si lascia dietro muovendosi
-       (initCursorTrail() in main.js, fuori da questo blocco: aggiunge/
-       rimuove elementi al volo sul <body>).
-       Su mobile la scia/il caret vengono disattivati via JS.
-  =========================================================== -->
   <div class="cursor" id="cursor" aria-hidden="true">
     <div class="cursor__caret" id="cursorCaret"></div>
   </div>
 
-  <!-- Texture "grana pellicola" sovrapposta a tutta la pagina, in stile cinema -->
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- ===========================================================
-       HEADER / NAVIGAZIONE
-       Fissa in alto, minimale. Le voci puntano alle sezioni della
-       stessa homepage (essendo l'unica pagina per ora). Quando
-       creerai le altre pagine, sostituisci gli href con i file
-       reali (es. "lavori.html", "chi-sono.html").
-  =========================================================== -->
   <header class="site-header">
-    <!-- Logo in PNG (sfondo trasparente). MODIFICA QUI: sostituisci il file
-         in assets/img/logo.png se vuoi cambiare logo. Se cambia notevolmente
-         la proporzione dell'immagine, regola l'altezza in style.css alla
-         regola ".site-header__logo img". -->
     <a href="#top" class="site-header__logo">
       <img src="assets/img/logo.png" alt="Adriano Libranti">
     </a>
@@ -96,20 +35,12 @@
       <a href="#contatti">Contatti</a>
     </nav>
 
-    <!-- MODIFICA QUI: link social principale in header, opzionale -->
     <a href="mailto:librantiadriano@gmail.com" class="site-header__cta">
       Scrivimi
     </a>
   </header>
 
   <main>
-
-    <!-- ===========================================================
-         HERO
-         Sezione a schermo intero. Titolo enorme + sottotitolo.
-         Questo è il primo impatto del sito:
-         MODIFICA QUI il claim principale se vuoi cambiare messaggio.
-    =========================================================== -->
     <section class="hero" id="hero">
       <p class="hero__eyebrow reveal">Creative Strategist</p>
 
@@ -124,48 +55,18 @@
         Ho studiato cinema, fotografia, scrittura strategica, social, web, UX e UI.
       </p>
 
-      <!-- Foto fissa a destra, solo su schermi larghi (vedi style.css,
-           ".home-photo-frame" e ".home-photo-frame--hero" — quella
-           della Hero è più alta delle altre). Foto di PROVA (Lorem
-           Picsum) per vedere l'effetto: MODIFICA QUI sostituendo il
-           file in assets/img/home/hero-side.jpg con una foto vera. -->
       <div class="home-photo-frame home-photo-frame--hero" aria-hidden="true">
-        <img src="assets/img/home/hero-side.jpg" alt="" class="home-photo reveal">
+        <img src="assets/img/home/hero-side.jpg" alt="" class="home-photo reveal" fetchpriority="high">
       </div>
     </section>
 
-    <!-- ===========================================================
-         TESTO ANIMATO ALLO SCROLL
-         Stesso font/taglia del titolo hero, sulla destra dello
-         schermo. Effetto "macchina da scrivere": mentre si scrolla,
-         il testo si scrive un carattere alla volta (nessuna
-         trasparenza/dissolvenza, i caratteri compaiono e basta),
-         legato in continuo alla posizione di scroll — non un
-         semplice reveal on/off. Gestito da initScrollText() in
-         main.js, che spezza il testo in tanti <span> (uno per
-         carattere) e ne mostra un numero crescente scrollando.
-         MODIFICA QUI il testo cambiando il contenuto del <p> qui
-         sotto; per lo stile vedi style.css, sezione "9. TESTO
-         ANIMATO ALLO SCROLL".
-    =========================================================== -->
     <section class="scroll-text">
       <p class="scroll-text__text" id="scrollText" data-cursor="text">
         Do forma a ciò che<br> vuoi comunicare,<br> a come vuoi essere visto <br>e a ciò che vuoi <br>lasciare negli altri.
       </p>
     </section>
 
-    <!-- ===========================================================
-         CHI SONO / MANIFESTO
-         Testo grande in stile editoriale con una frase manifesto
-         e un paragrafo di dettaglio più piccolo sotto.
-         MODIFICA QUI la tua bio breve.
-    =========================================================== -->
     <section class="about" id="chi-sono">
-      <!-- Il testo sta in un contenitore con la sua larghezza massima
-           (".about__inner"), mentre la sezione stessa resta a tutta
-           larghezza: serve a far arrivare la foto qui sotto fino al
-           bordo estremo dello schermo (right:0), non solo al bordo
-           del blocco di testo. -->
       <div class="about__inner">
         <p class="about__statement reveal" data-cursor="text">
           Costruisco narrazioni che uniscono parola, immagine e movimento
@@ -185,21 +86,11 @@
         </div>
       </div>
 
-      <!-- Foto fissa a destra, solo su schermi larghi. Foto di PROVA
-           (Lorem Picsum): MODIFICA QUI sostituendo il file in
-           assets/img/home/about-side.jpg con una foto vera (magari
-           un tuo ritratto, dato che siamo in "Chi sono"). -->
       <div class="home-photo-frame" aria-hidden="true">
-        <img src="assets/img/home/about-side.jpg" alt="" class="home-photo reveal">
+        <img src="assets/img/home/about-side.jpg" alt="" class="home-photo reveal" loading="lazy">
       </div>
     </section>
 
-    <!-- ===========================================================
-         SERVIZI / EXPERTISE
-         Lista numerata in stile editoriale. Niente più anteprima
-         immagine al passaggio del mouse (tolta su richiesta): solo le
-         tre righe, ognuna collegata alla pagina dedicata.
-    =========================================================== -->
     <section class="services" id="servizi">
       <ul class="services__list">
         <li>
@@ -223,13 +114,6 @@
       </ul>
     </section>
 
-    <!-- ===========================================================
-         LAVORI (teaser)
-         Non sono semplici card ma due grandi pulsanti che dividono a
-         metà lo spazio della sezione: sono i link alle due pagine
-         principali del portfolio, entrambe già pronte (lavori.html
-         smista tra Brand e comunicazione ed Eventi).
-    =========================================================== -->
     <section class="work" id="lavori">
       <div class="work__grid">
         <a href="lavori.html" class="work-card reveal">
@@ -240,73 +124,48 @@
         </a>
       </div>
 
-      <!-- ===========================================================
-           CAROSELLO LOGHI CLIENTI
-           Con solo 2 loghi (per ora) niente scorrimento: ferma e
-           centrata, classe "logos-carousel--static" (vedi style.css).
-           MODIFICA QUI quando ne avrai altri: 1) togli
-           "logos-carousel--static" qui sotto, 2) rimetti la lista di
-           <span class="logo-item"><img ...></span> DUPLICATA in due
-           .logos-carousel__group (serve per il loop senza scatti — il
-           secondo con aria-hidden="true", per non far leggere due
-           volte gli stessi nomi agli screen reader). Lo scorrimento
-           riparte da solo, la logica in style.css/main.js è già
-           tutta pronta, non è stata tolta. -->
       <div class="logos-carousel logos-carousel--static reveal">
         <div class="logos-carousel__track">
           <div class="logos-carousel__group">
-            <span class="logo-item"><img src="assets/img/loghi%20clienti/gripmoto.png" alt="Grip Moto"></span>
-            <span class="logo-item"><img src="assets/img/loghi%20clienti/cambioruote.png" alt="Cambio Ruote"></span>
+            <span class="logo-item">
+              <span class="logo-item__caption">Copywriting</span>
+              <img src="assets/img/loghi%20clienti/gripmoto.png" alt="Grip Moto" class="logo-item__img--gripmoto" loading="lazy">
+            </span>
+            <span class="logo-item">
+              <span class="logo-item__caption">Copywriting</span>
+              <img src="assets/img/loghi%20clienti/cambioruote.png" alt="Cambio Ruote" loading="lazy">
+            </span>
           </div>
         </div>
       </div>
 
-      <!-- ===========================================================
-           MINI GALLERIA (sotto il carosello loghi)
-           Un mosaico centrato, non più uno slider orizzontale (tolto:
-           "non si abbinava" al resto del sito) — qualche foto più
-           grande (classe "--big") sparsa per dare ritmo, come una
-           vera parete di foto. Un clic apre la foto a schermo intero
-           nel lightbox qui sotto, da cui si passa avanti/indietro con
-           le frecce o i tasti ← →. Hover leggero (solo colore), niente
-           zoom: effetto voluto più calmo.
-           MODIFICA QUI: per aggiungerne/toglierne, copia/cancella un
-           <img> (il lightbox si aggiorna da solo, non serve toccare
-           main.js) — per farne una "grande" aggiungi la classe
-           "gallery-strip__img--big".
-      =========================================================== -->
       <div class="gallery-strip reveal" id="galleryStrip">
-        <img src="assets/img/home/gallery-01.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-02.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-03.jpg" alt="" class="gallery-strip__img gallery-strip__img--big">
-        <img src="assets/img/home/gallery-04.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-05.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-06.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-08.jpg" alt="" class="gallery-strip__img gallery-strip__img--big">
-        <img src="assets/img/home/gallery-09.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-10.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-11.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-12.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-13.jpg" alt="" class="gallery-strip__img gallery-strip__img--big">
-        <img src="assets/img/home/gallery-14.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-15.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-16.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-17.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-18.jpg" alt="" class="gallery-strip__img gallery-strip__img--big">
-        <img src="assets/img/home/gallery-20.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-21.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-22.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-23.jpg" alt="" class="gallery-strip__img gallery-strip__img--big">
-        <img src="assets/img/home/gallery-24.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-26.jpg" alt="" class="gallery-strip__img">
-        <img src="assets/img/home/gallery-27.jpg" alt="" class="gallery-strip__img">
+        <img src="assets/img/home/gallery-01.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-02.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-03.jpg" alt="" class="gallery-strip__img gallery-strip__img--big" loading="lazy">
+        <img src="assets/img/home/gallery-04.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-05.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-06.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-08.jpg" alt="" class="gallery-strip__img gallery-strip__img--big" loading="lazy">
+        <img src="assets/img/home/gallery-09.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-10.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-11.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-12.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-13.jpg" alt="" class="gallery-strip__img gallery-strip__img--big" loading="lazy">
+        <img src="assets/img/home/gallery-14.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-15.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-16.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-17.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-18.jpg" alt="" class="gallery-strip__img gallery-strip__img--big" loading="lazy">
+        <img src="assets/img/home/gallery-20.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-21.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-22.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-23.jpg" alt="" class="gallery-strip__img gallery-strip__img--big" loading="lazy">
+        <img src="assets/img/home/gallery-24.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-26.jpg" alt="" class="gallery-strip__img" loading="lazy">
+        <img src="assets/img/home/gallery-27.jpg" alt="" class="gallery-strip__img" loading="lazy">
       </div>
 
-      <!-- Lightbox della mini-galleria: un solo blocco riusato per
-           tutte le foto (initGalleryLightbox() in main.js riempie
-           l'unica <img> qui dentro con la foto cliccata). Parte
-           nascosto (niente classe "is-open"); aria-hidden gestito da
-           JS in base allo stato aperto/chiuso. -->
       <div class="lightbox" id="lightbox" aria-hidden="true">
         <button type="button" class="lightbox__close" id="lightboxClose" aria-label="Chiudi">✕</button>
         <button type="button" class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Foto precedente">‹</button>
@@ -315,12 +174,6 @@
       </div>
     </section>
 
-    <!-- ===========================================================
-         QUOTE / CINEMA
-         Frase manifesto a schermo intero, tono cinematografico,
-         per dare respiro tra le sezioni.
-         MODIFICA QUI la citazione.
-    =========================================================== -->
     <section class="quote">
       <p class="quote__text reveal" data-cursor="text">
         “ Ogni progetto per me parte da una domanda: cosa deve sentire chi legge o chi guarda? ”
@@ -330,12 +183,6 @@
 
   </main>
 
-  <!-- ===========================================================
-       CONTATTI / FOOTER
-       Call to action finale con email grande e social.
-       MODIFICA QUI l'email (se diversa da quella attuale) e i
-       link social — sono impostati su "#" come segnaposto.
-  =========================================================== -->
   <footer class="contact" id="contatti">
     <h2 class="contact__title reveal" data-cursor="text">Parliamo del tuo prossimo progetto.</h2>
 
@@ -344,18 +191,17 @@
     </a>
 
     <div class="contact__socials reveal">
-      <!-- MODIFICA QUI: sostituisci "#" con i tuoi profili reali -->
       <a href="https://www.linkedin.com/in/adriano-libranti-921337409/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://www.instagram.com/libradri" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.facebook.com/libranti.adriano" target="_blank" rel="noopener">Facebook</a>
     </div>
 
     <div class="contact__meta">
-      <span>© <span id="year"></span> Adriano Libranti — Creative Strategist</span>
+      <span>© <span id="year"></span> Adriano Libranti | Creative Strategist</span>
       <a href="#top">Torna su ↑</a>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=29"></script>
+  <script src="assets/js/main.js?v=30"></script>
 </body>
 </html>

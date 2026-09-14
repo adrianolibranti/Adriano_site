@@ -1,44 +1,23 @@
 <!DOCTYPE html>
-<!--
-  =============================================================
-  SITO PORTFOLIO — ADRIANO LIBRANTI
-  Progetto "Stand out, don't fit in" — grafica
-  =============================================================
-  Tipo: PROGETTO PERSONALE → testo + una singola artwork a piena
-  risoluzione (.project-artwork, non ritagliata come nella griglia
-  .project-gallery) + citazione + link per scaricarla gratis.
-  Collegata dalla terza striscia in progetti-personali.html.
-
-  Per crearne uno nuovo, duplica questo file (o un altro progetto
-  esistente) e adatta i blocchi — vedi "Come aggiungere un nuovo
-  progetto" in README.md.
--->
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stand out, don't fit in — Adriano Libranti</title>
+  <title>Stand out, don't fit in | Adriano Libranti</title>
   <meta name="description" content="Adriano Libranti — Stand out, don't fit in: una grafica realizzata a mano, scaricabile gratuitamente.">
-
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="assets/css/style.css?v=34">
+  <link rel="stylesheet" href="assets/css/style.css?v=42">
 </head>
 <body id="top">
-
-  <!-- CURSORE PERSONALIZZATO — identico a index.html, vedi lì i commenti -->
   <div class="cursor" id="cursor" aria-hidden="true">
     <div class="cursor__caret" id="cursorCaret"></div>
   </div>
 
-  <!-- Texture "grana pellicola", identica a index.html -->
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- ===========================================================
-       HEADER / NAVIGAZIONE — uguale al resto del sito.
-  =========================================================== -->
   <header class="site-header">
     <a href="index.html" class="site-header__logo">
       <img src="assets/img/logo.png" alt="Adriano Libranti">
@@ -57,10 +36,6 @@
   </header>
 
   <main>
-
-    <!-- ===========================================================
-         HERO DEL PROGETTO
-    =========================================================== -->
     <section class="project-hero">
       <a href="progetti-personali.html" class="project-hero__back">
         ← Progetti personali
@@ -83,44 +58,27 @@
         </div>
       </div>
 
-      <!-- Niente .project-hero__cover qui: per questo progetto la
-           copertina compare solo come anteprima nella striscia in
-           progetti-personali.html — nella pagina si passa dritti
-           all'artwork intera qui sotto, senza doppione. -->
     </section>
 
-    <!-- ===========================================================
-         CORPO DEL PROGETTO — testo + artwork intera + citazione + download
-    =========================================================== -->
     <div class="project-body">
-
       <p class="project-body__text reveal">
         Una grafica realizzata a mano, nata come esercizio
         personale di illustrazione e lettering. È scaricabile
         gratuitamente qui sotto.
       </p>
 
-      <!-- Artwork a piena risoluzione, non ritagliata (vedi il
-           commento su .project-artwork in style.css). Immagine
-           diversa da quella usata per copertina/anteprima (quella
-           resta "cover.jpg", invariata). MODIFICA QUI se cambi
-           immagine — nota: l'apostrofo in "don't" nel nome del file
-           è codificato come %27 perché altrimenti romperebbe le
-           virgolette negli attributi/URL qui sotto. -->
       <img
         class="project-artwork reveal"
         src="assets/img/progetti/stand_out_don%27t_fit_in/Stand%20out%2C%20don%27t%20fit%20in.png"
         alt="Stand out, don't fit in — grafica illustrata a mano"
+        loading="lazy"
       >
-
       <p class="project-quote reveal">
         Distinguersi in un mondo sempre più omologato e frenetico a
         volte è il miglior modo per ritrovare noi stessi, guardare nella
         direzione in cui gli altri non guardano.
       </p>
 
-      <!-- "download" fa scaricare il file invece di aprirlo nel
-           browser. MODIFICA QUI se cambi immagine/nome. -->
       <a
         href="assets/img/progetti/stand_out_don%27t_fit_in/Stand%20out%2C%20don%27t%20fit%20in.png"
         download
@@ -133,9 +91,6 @@
 
   </main>
 
-  <!-- FOOTER — versione ridotta come nelle altre pagine "elenco
-       progetti": niente intestazione "— Parliamo", solo email,
-       social e riga finale. -->
   <footer class="contact" id="contatti">
     <a href="mailto:librantiadriano@gmail.com" class="contact__email reveal">
       librantiadriano@gmail.com
@@ -148,11 +103,11 @@
     </div>
 
     <div class="contact__meta">
-      <span>© <span id="year"></span> Adriano Libranti — Creative Strategist</span>
+      <span>© <span id="year"></span> Adriano Libranti | Creative Strategist</span>
       <a href="#top">Torna su ↑</a>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=29"></script>
+  <script src="assets/js/main.js?v=30"></script>
 </body>
 </html>

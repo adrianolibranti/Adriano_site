@@ -1,43 +1,23 @@
 <!DOCTYPE html>
-<!--
-  =============================================================
-  SITO PORTFOLIO — ADRIANO LIBRANTI
-  Progetto "The Social Prosthesis" — docufilm
-  =============================================================
-  Tipo: PROGETTO PERSONALE → testo + video (embed YouTube) + galleria
-  di still + script scaricabile in PDF. Prima striscia (e primo
-  progetto) in progetti-personali.html.
-
-  Per crearne uno nuovo, duplica questo file (o un altro progetto
-  esistente, es. il-broccolo-americano.html) e adatta i blocchi —
-  vedi "Come aggiungere un nuovo progetto" in README.md.
--->
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Social Prosthesis — Adriano Libranti</title>
+  <title>The Social Prosthesis | Adriano Libranti</title>
   <meta name="description" content="Adriano Libranti — The Social Prosthesis: docufilm su nuove tecnologie e storytelling.">
-
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="assets/css/style.css?v=34">
+  <link rel="stylesheet" href="assets/css/style.css?v=42">
 </head>
 <body id="top">
-
-  <!-- CURSORE PERSONALIZZATO — identico a index.html, vedi lì i commenti -->
   <div class="cursor" id="cursor" aria-hidden="true">
     <div class="cursor__caret" id="cursorCaret"></div>
   </div>
 
-  <!-- Texture "grana pellicola", identica a index.html -->
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- ===========================================================
-       HEADER / NAVIGAZIONE — uguale al resto del sito.
-  =========================================================== -->
   <header class="site-header">
     <a href="index.html" class="site-header__logo">
       <img src="assets/img/logo.png" alt="Adriano Libranti">
@@ -56,10 +36,6 @@
   </header>
 
   <main>
-
-    <!-- ===========================================================
-         HERO DEL PROGETTO
-    =========================================================== -->
     <section class="project-hero">
       <a href="progetti-personali.html" class="project-hero__back">
         ← Progetti personali
@@ -78,18 +54,14 @@
         </div>
         <div class="project-hero__meta-item">
           <span class="project-hero__meta-label">Ruolo</span>
-          <span class="project-hero__meta-value">Sceneggiatura, regia, fotografia, 3D, compositing</span>
+          <span class="project-hero__meta-value">Sceneggiatura, regia, riprese, fotografia, montaggio, 3D, compositing</span>
         </div>
       </div>
 
-      <div class="project-hero__cover reveal" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/cover.png')"></div>
+      <div class="project-hero__cover reveal" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/cover.jpg')"></div>
     </section>
 
-    <!-- ===========================================================
-         CORPO DEL PROGETTO — testo + galleria piccola
-    =========================================================== -->
     <div class="project-body">
-
       <p class="project-body__text reveal">
         Un progetto che accompagna il caso studio della tesi
         <em>Nuove tecnologie e storytelling: comunicare nell'era
@@ -99,22 +71,6 @@
         Guarda il trailer e leggi la sceneggiatura completa qui sotto.
       </p>
 
-      <!-- Video: codice embed generato direttamente da YouTube
-           (Condividi → Incorpora), con l'ID "si" di tracciamento
-           incluso. "allowfullscreen" lascia allo spettatore la
-           scelta di guardarlo a schermo intero; la qualità (fino a
-           4K se disponibile) è scelta automaticamente da YouTube in
-           base a finestra/connessione, oppure a mano dall'ingranaggio
-           nei controlli del player.
-           MODIFICA QUI se cambi video: incolla il nuovo codice embed
-           da YouTube (Condividi → Incorpora) al posto di questo,
-           aggiungendo solo class="project-video reveal" e
-           loading="lazy" come nelle altre righe.
-           NOTA: se apri il file con doppio click (file://) il video
-           potrebbe non caricarsi — è un limite di YouTube con i
-           domini senza http/https vero. Su un server locale (vedi
-           README.md, "Come vedere il sito") o sul sito pubblicato
-           funziona normalmente. -->
       <iframe
         class="project-video reveal"
         src="https://www.youtube.com/embed/kXfs_DzDNWI?si=YS6DhdD-qGFc7hp9"
@@ -125,29 +81,24 @@
         loading="lazy"
       ></iframe>
 
-      <!-- Galleria still dal docufilm. MODIFICA QUI per aggiungere/
-           togliere immagini: copia/rimuovi un .project-gallery__item
-           e il relativo file in assets/img/progetti/the-social-prosthesis/galleria/ -->
       <div class="project-gallery reveal">
         <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/1_1.gif')"></div>
         <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/2.gif')"></div>
-        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%2001.00_11_28_01.Immagine009.png')"></div>
-        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%2001.00_17_39_13.Immagine013.png')"></div>
-        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.00_00_15_17.Immagine030.png')"></div>
-        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.00_00_58_14.Immagine025.png')"></div>
-        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.00_01_38_01.Immagine032.png')"></div>
-        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.00_01_40_13.Immagine029.png')"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%2001.00_11_28_01.Immagine009.jpg')"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%2001.00_17_39_13.Immagine013.jpg')"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.00_00_15_17.Immagine030.jpg')"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.00_00_58_14.Immagine025.jpg')"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.00_01_38_01.Immagine032.jpg')"></div>
+        <div class="project-gallery__item" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.00_01_40_13.Immagine029.jpg')"></div>
         <div class="project-gallery__item project-gallery__item--wide" aria-hidden="true" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/Sequence%20anteprima.gif')"></div>
       </div>
 
       <p class="project-body__text reveal">
-        Il docufilm nasce da uno studio approfondito sul mondo dei social e del mezzo con cui si accede ad essi. 
-        Si focalizza su UX,UI e algoritmi che sempre più, consapevolmente o inconsapevolmente minano le nostre capacità cerebrali. 
+        Il docufilm nasce da uno studio approfondito sul mondo dei social e del mezzo con cui si accede ad essi.
+        Si focalizza su UX,UI e algoritmi che sempre più, consapevolmente o inconsapevolmente minano le nostre capacità cerebrali.
         Propongo possibili soluzioni al problema e ragiono su quanto questa <em>protesi sociale</em> chiamata smartphone, sia ormai parte del nostro corpo.
       </p>
 
-      <!-- Script completo in PDF, presentato come card invece che
-           come link nudo. MODIFICA QUI se cambi file/nome. -->
       <a
         href="assets/img/progetti/the-social-prosthesis/The%20Social%20Prosthesis_script.pdf"
         class="project-document reveal"
@@ -165,9 +116,6 @@
 
   </main>
 
-  <!-- FOOTER — versione ridotta come nelle altre pagine "elenco
-       progetti": niente intestazione "— Parliamo", solo email,
-       social e riga finale. -->
   <footer class="contact" id="contatti">
     <a href="mailto:librantiadriano@gmail.com" class="contact__email reveal">
       librantiadriano@gmail.com
@@ -180,11 +128,11 @@
     </div>
 
     <div class="contact__meta">
-      <span>© <span id="year"></span> Adriano Libranti — Creative Strategist</span>
+      <span>© <span id="year"></span> Adriano Libranti | Creative Strategist</span>
       <a href="#top">Torna su ↑</a>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=29"></script>
+  <script src="assets/js/main.js?v=30"></script>
 </body>
 </html>

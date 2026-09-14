@@ -17,6 +17,7 @@ eventi.html                   → elenco progetti eventi
 progetti-personali.html       → elenco progetti personali, a strisce
 
 the_social_prosthesis.html    → progetto personale: docufilm (video YouTube + galleria + script PDF)
+the-floor-is-lava.html        → progetto personale: video (solo testo + video YouTube)
 il-broccolo-americano.html    → progetto personale: sinossi di sceneggiatura (solo testo + PDF)
 stand-out-dont-fit-in.html     → progetto personale: grafica (artwork intera + citazione + download)
 
@@ -38,6 +39,7 @@ man mano che i progetti veri saranno pronti, vedi sotto.
    (tutto minuscolo, trattini al posto degli spazi). Guarda i progetti
    già fatti per capire come si combinano i blocchi:
    - `the_social_prosthesis.html` → testo + video YouTube + galleria + PDF
+   - `the-floor-is-lava.html` → solo testo + video YouTube (nessuna galleria/PDF)
    - `il-broccolo-americano.html` → solo testo + PDF (nessuna foto)
    - `stand-out-dont-fit-in.html` → testo + artwork intera + citazione + download
 2. **Crea la cartella** delle sue immagini: `assets/img/progetti/nome/`

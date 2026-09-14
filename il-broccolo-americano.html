@@ -1,43 +1,23 @@
 <!DOCTYPE html>
-<!--
-  =============================================================
-  SITO PORTFOLIO — ADRIANO LIBRANTI
-  Progetto "Il broccolo americano" — sinossi di sceneggiatura
-  =============================================================
-  Tipo: PROGETTO PERSONALE → copertina + testo + un documento PDF
-  scaricabile (nessun video: è un progetto di scrittura, non ancora
-  girato). Collegata dalla seconda striscia in progetti-personali.html.
-
-  Per crearne uno nuovo, duplica questo file (o un altro progetto
-  esistente) e adatta i blocchi — vedi "Come aggiungere un nuovo
-  progetto" in README.md.
--->
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Il broccolo americano — Adriano Libranti</title>
+  <title>Il broccolo americano | Adriano Libranti</title>
   <meta name="description" content="Adriano Libranti — Il broccolo americano: sinossi di sceneggiatura ispirata al Triangle Fire di New York.">
-
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="assets/css/style.css?v=34">
+  <link rel="stylesheet" href="assets/css/style.css?v=42">
 </head>
 <body id="top">
-
-  <!-- CURSORE PERSONALIZZATO — identico a index.html, vedi lì i commenti -->
   <div class="cursor" id="cursor" aria-hidden="true">
     <div class="cursor__caret" id="cursorCaret"></div>
   </div>
 
-  <!-- Texture "grana pellicola", identica a index.html -->
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- ===========================================================
-       HEADER / NAVIGAZIONE — uguale al resto del sito.
-  =========================================================== -->
   <header class="site-header">
     <a href="index.html" class="site-header__logo">
       <img src="assets/img/logo.png" alt="Adriano Libranti">
@@ -56,10 +36,6 @@
   </header>
 
   <main>
-
-    <!-- ===========================================================
-         HERO DEL PROGETTO
-    =========================================================== -->
     <section class="project-hero">
       <a href="progetti-personali.html" class="project-hero__back">
         ← Progetti personali
@@ -82,11 +58,6 @@
         </div>
       </div>
 
-      <!-- aspect-ratio impostato sulle proporzioni reali della foto
-           (640×428) invece del 16:9 di default: così non viene
-           ritagliata ai lati per forzarla in un formato diverso dal
-           suo. MODIFICA QUI se cambi immagine: aggiorna il rapporto
-           con le dimensioni reali del nuovo file. -->
       <div
         class="project-hero__cover reveal"
         aria-hidden="true"
@@ -94,11 +65,7 @@
       ></div>
     </section>
 
-    <!-- ===========================================================
-         CORPO DEL PROGETTO — solo testo + documento PDF
-    =========================================================== -->
     <div class="project-body">
-
       <p class="project-body__text reveal">
         Una sinossi pensata come sceneggiatura e ispirata agli eventi del
         <em>Triangle Shirtwaist Factory Fire</em>, l'incendio che nel
@@ -107,8 +74,6 @@
       </p>
       <p class="project-body__text reveal">La storia di una <em>bambina</em> che agli inizi del <em>900</em> scappa dalla <em>Sicilia</em> in cerca di un futuro migliore, sopravvivendo con la sua famiglia in un quartiere che ancora non sa neanche pronunciare bene: <em>Brooklyn</em>.</p>
 
-      <!-- Script/sinossi completa in PDF, presentato come card
-           invece che come link nudo. MODIFICA QUI se cambi file/nome. -->
       <a
         href="assets/img/progetti/Il_broccolo_americano/Il%20Broccolo%20Americano%20ita_eng.pdf"
         class="project-document reveal"
@@ -126,9 +91,6 @@
 
   </main>
 
-  <!-- FOOTER — versione ridotta come nelle altre pagine "elenco
-       progetti": niente intestazione "— Parliamo", solo email,
-       social e riga finale. -->
   <footer class="contact" id="contatti">
     <a href="mailto:librantiadriano@gmail.com" class="contact__email reveal">
       librantiadriano@gmail.com
@@ -141,11 +103,11 @@
     </div>
 
     <div class="contact__meta">
-      <span>© <span id="year"></span> Adriano Libranti — Creative Strategist</span>
+      <span>© <span id="year"></span> Adriano Libranti | Creative Strategist</span>
       <a href="#top">Torna su ↑</a>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=29"></script>
+  <script src="assets/js/main.js?v=30"></script>
 </body>
 </html>

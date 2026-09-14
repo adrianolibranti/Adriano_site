@@ -1,50 +1,23 @@
 <!DOCTYPE html>
-<!--
-  =============================================================
-  SITO PORTFOLIO — ADRIANO LIBRANTI
-  Pagina "Progetti personali" — elenco a strisce
-  =============================================================
-  Si apre dal pulsante "Progetti personali" in homepage (sezione
-  Portfolio) e dalla riga "Corti" nella sezione "Cosa faccio".
-
-  Stile volutamente diverso dalle altre pagine "elenco progetti"
-  (brand-comunicazione.html, eventi.html): niente card in griglia,
-  ma una striscia a tutta larghezza per ogni progetto, con titolo,
-  breve descrizione e una vera anteprima accanto al testo. Le
-  strisce si alternano — testo/anteprima, poi anteprima/testo, e
-  così via — vedi .project-strip in style.css, sezione "16. PAGINA
-  PROGETTI PERSONALI".
-
-  MODIFICA QUI: per aggiungere un progetto, copia un intero blocco
-  <a class="project-strip">...</a> e cambia titolo, tag e href.
--->
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progetti personali — Adriano Libranti</title>
+  <title>Progetti personali | Adriano Libranti</title>
   <meta name="description" content="Adriano Libranti — Progetti personali e corti: lavori indipendenti al di fuori dei progetti per i clienti.">
-
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="assets/css/style.css?v=34">
+  <link rel="stylesheet" href="assets/css/style.css?v=42">
 </head>
 <body id="top">
-
-  <!-- CURSORE PERSONALIZZATO — identico a index.html, vedi lì i commenti -->
   <div class="cursor" id="cursor" aria-hidden="true">
     <div class="cursor__caret" id="cursorCaret"></div>
   </div>
 
-  <!-- Texture "grana pellicola", identica a index.html -->
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- ===========================================================
-       HEADER / NAVIGAZIONE — uguale al resto del sito, con i link
-       che puntano a "index.html#..." essendo una pagina diversa.
-  =========================================================== -->
   <header class="site-header">
     <a href="index.html" class="site-header__logo">
       <img src="assets/img/logo.png" alt="Adriano Libranti">
@@ -63,36 +36,26 @@
   </header>
 
   <main>
-
-    <!-- ===========================================================
-         ELENCO A STRISCE
-         Un <a class="project-strip"> per progetto: dentro, un
-         .project-strip__body (titolo + descrizione + freccia) e un
-         .project-strip__preview (l'anteprima, per ora un gradiente
-         segnaposto). Le righe pari si dispongono a specchio rispetto
-         alle dispari — è automatico, gestito in style.css con
-         :nth-child(even), non serve invertire l'ordine qui in HTML.
-         MODIFICA QUI: per aggiungere un progetto copia un intero
-         blocco <a class="project-strip">; per l'immagine vera,
-         sostituisci il gradiente di .project-strip__preview in
-         style.css con background-image: url(...).
-    =========================================================== -->
     <section class="strip-list">
       <a href="the_social_prosthesis.html" class="project-strip reveal">
         <div class="project-strip__body">
           <h3 class="project-strip__title">The Social Prosthesis</h3>
-          <p class="project-strip__desc">Docufilm — sceneggiatura, regia, fotografia, 3D, compositing.</p>
+          <p class="project-strip__desc">Docufilm — sceneggiatura, regia, riprese, fotografia, montaggio, 3D, compositing.</p>
         </div>
-        <div class="project-strip__preview" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/cover.png')"></div>
+        <div class="project-strip__preview" style="background-image: url('assets/img/progetti/the-social-prosthesis/galleria/cover.jpg')"></div>
+      </a>
+      <a href="the-floor-is-lava.html" class="project-strip reveal">
+        <div class="project-strip__body">
+          <h3 class="project-strip__title">The Floor is Lava</h3>
+          <p class="project-strip__desc">Cinematica automotive realizzata sul vulcano Etna - regia, riprese, montaggio.</p>
+        </div>
+        <div class="project-strip__preview" style="background-image: url('assets/img/progetti/the_floor_is_lava/galleria/cover.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
       </a>
       <a href="il-broccolo-americano.html" class="project-strip reveal">
         <div class="project-strip__body">
           <h3 class="project-strip__title">Il Broccolo Americano</h3>
           <p class="project-strip__desc">Sinossi di sceneggiatura ispirata al Triangle Fire di New York.</p>
         </div>
-        <!-- Zoomata un po' e spostata verso l'alto: il ritaglio di
-             default (centrato) mostrava troppo la didascalia scritta
-             a mano in basso alla foto invece della scena. -->
         <div class="project-strip__preview" style="background-image: url('assets/img/progetti/Il_broccolo_americano/galleria/cover.jpg'); background-size: 113%; background-position: center 20%;"></div>
       </a>
       <a href="stand-out-dont-fit-in.html" class="project-strip reveal">
@@ -100,18 +63,12 @@
           <h3 class="project-strip__title">Stand out, don't fit in</h3>
           <p class="project-strip__desc">Grafica realizzata a mano, scaricabile gratuitamente.</p>
         </div>
-        <!-- "contain" invece di "cover": mostra l'immagine intera,
-             rimpicciolita quanto basta per stare nel riquadro senza
-             ritagli (i bordi restano nel gradiente di sfondo). -->
-        <div class="project-strip__preview" style="background-image: url('assets/img/progetti/stand_out_don%27t_fit_in/cover.jpg'); background-size: contain; background-repeat: no-repeat;"></div>
+        <div class="project-strip__preview" style="background-image: url('assets/img/progetti/stand_out_don%27t_fit_in/cover.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
       </a>
     </section>
 
   </main>
 
-  <!-- FOOTER — versione ridotta come nelle altre pagine "elenco
-       progetti": niente intestazione "— Parliamo", solo email,
-       social e riga finale. -->
   <footer class="contact" id="contatti">
     <a href="mailto:librantiadriano@gmail.com" class="contact__email reveal">
       librantiadriano@gmail.com
@@ -124,11 +81,11 @@
     </div>
 
     <div class="contact__meta">
-      <span>© <span id="year"></span> Adriano Libranti — Creative Strategist</span>
+      <span>© <span id="year"></span> Adriano Libranti | Creative Strategist</span>
       <a href="#top">Torna su ↑</a>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=29"></script>
+  <script src="assets/js/main.js?v=30"></script>
 </body>
 </html>
