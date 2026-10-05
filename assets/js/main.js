@@ -175,6 +175,7 @@ function initHeaderScrollState() {
 function initScrollText() {
   const container = document.getElementById("scrollText");
   if (!container) return;
+  if (window.matchMedia("(max-width: 860px)").matches) return;
 
   const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
   const textNodes = [];

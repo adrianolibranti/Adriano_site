@@ -963,6 +963,8 @@ video.project-video {
 
   .hero { min-height: 0; justify-content: flex-start; padding-top: 9rem; padding-bottom: 6rem; }
 
+  .scroll-text { display: none; }
+
   .lightbox__nav { font-size: 2.5rem; padding: 0.5rem; }
 
   .services__row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
