@@ -11,17 +11,74 @@ function initPreloader() {
   function tick(now) {
     const progress = Math.min((now - start) / duration, 1);
     countEl.textContent = Math.round(progress * 100);
+    preloader.style.setProperty("--progress", progress);
 
     if (progress < 1) {
       requestAnimationFrame(tick);
     } else {
       preloader.classList.add("is-done");
       document.body.classList.remove("is-loading");
-      preloader.addEventListener("transitionend", () => preloader.remove(), { once: true });
+      setTimeout(() => preloader.remove(), 1500);
     }
   }
 
   requestAnimationFrame(tick);
+}
+
+function initHeroDepth() {
+  const stage = document.querySelector(".hero__stage");
+  if (!stage) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let ticking = false;
+
+  function update() {
+    const progress = Math.min(1, Math.max(0, window.scrollY / stage.offsetHeight));
+    stage.style.setProperty("--p", progress.toFixed(4));
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+  update();
+
+  if (window.matchMedia("(pointer: coarse)").matches) return;
+
+  stage.addEventListener("mousemove", (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 2;
+    stage.style.setProperty("--mx", x.toFixed(3));
+  });
+}
+
+function initQuoteParallax() {
+  const img = document.getElementById("quoteBg");
+  if (!img) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const section = img.closest(".quote");
+  let ticking = false;
+
+  function update() {
+    const rect = section.getBoundingClientRect();
+    const vh = window.innerHeight;
+    if (rect.bottom > 0 && rect.top < vh) {
+      const progress = (vh - rect.top) / (vh + rect.height);
+      img.style.transform = `translate3d(0, ${((progress - 0.5) * 18).toFixed(2)}%, 0)`;
+    }
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+  update();
 }
 
 function initCustomCursor() {
@@ -213,8 +270,9 @@ function initScrollText() {
   function update() {
     const vh = window.innerHeight;
     const top = container.getBoundingClientRect().top;
-    const start = vh * START_VH;
-    const end = vh * END_VH;
+    // Se il testo è già in vista al caricamento, la scrittura parte dal primo scroll.
+    const start = Math.min(vh * START_VH, top + window.scrollY);
+    const end = Math.min(vh * END_VH, start - 1);
     let progress = (start - top) / (start - end);
     progress = Math.min(1, Math.max(0, progress));
 
@@ -291,4 +349,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeaderScrollState();
   initScrollText();
   initGalleryLightbox();
+  initHeroDepth();
+  initQuoteParallax();
 });

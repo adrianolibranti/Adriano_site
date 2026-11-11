@@ -9,12 +9,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=51">
+  <link rel="preload" as="image" href="assets/img/home/hero-figure.webp" type="image/webp">
+  <link rel="stylesheet" href="assets/css/style.css?v=58">
 </head>
-<body id="top">
+<body id="top" class="home">
   <div class="preloader" id="preloader" aria-hidden="true">
-    <span class="preloader__count" id="preloaderCount">0</span>
-    <span class="preloader__label">Adriano Libranti</span>
+    <div class="preloader__panel preloader__panel--top"></div>
+    <div class="preloader__panel preloader__panel--bottom"></div>
+    <div class="preloader__center">
+      <span class="preloader__count" id="preloaderCount">0</span>
+    </div>
   </div>
 
   <div class="cursor" id="cursor" aria-hidden="true">
@@ -42,18 +46,24 @@
 
   <main>
     <section class="hero" id="hero">
-      <p class="hero__eyebrow reveal">Creative Strategist</p>
+      <div class="hero__stage">
+        <div class="hero__glow" aria-hidden="true"></div>
 
-      <h1 class="hero__title" data-cursor="text">
-        <span class="reveal">Storie che</span>
-        <span class="reveal">vedi, leggi, <em>vivi.</em></span>
-      </h1>
+        <h1 class="hero__title" data-cursor="text">
+          <span class="hero__word"><span class="hero__word-inner">Storie</span></span>
+        </h1>
 
-      <p class="hero__subtitle reveal">
-        Sono Adriano Libranti.<br>
-        Laureato in Nuove Tecnologie dell’Arte.<br>
-        Ho studiato cinema, fotografia, scrittura strategica, social, web, UX e UI.
-      </p>
+        <img src="assets/img/home/hero-figure.webp" alt="" class="hero__figure" width="500" height="350" aria-hidden="true">
+      </div>
+
+      <div class="hero__info">
+      
+        <p class="hero__subtitle">
+          Sono Adriano Libranti.<br>
+          Laureato in Nuove Tecnologie dell’Arte.<br>
+          Ho studiato cinema, fotografia, scrittura strategica, social, web, UX e UI.
+        </p>
+      </div>
     </section>
 
     <section class="scroll-text">
@@ -63,27 +73,33 @@
     </section>
 
     <section class="about" id="chi-sono">
-      <div class="about__inner">
-        <p class="about__statement reveal" data-cursor="text">
-          Costruisco narrazioni che uniscono parola, immagine e movimento
-          per dare forma ai <em>brand di cui la gente si ricorda.</em>
-        </p>
+      <div class="about__grid">
+        <figure class="about__photo reveal">
+          <img src="assets/img/home/about-side.jpg" alt="" loading="lazy">
+        </figure>
 
-        <div class="about__details reveal">
-          <p>
-            Da anni lavoro all'incrocio tra copywriting, design e UX,
-            portando nel digitale la sensibilità visiva e narrativa del
-            cinema.<br>Il risultato sono contenuti che non si
-            limitano a comunicare ma creano emozioni.
+        <div class="about__content">
+          <h2 class="about__name reveal" data-cursor="text">Adriano Libranti</h2>
+          <p class="about__role reveal">Creative Strategist</p>
+
+          <p class="about__statement reveal" data-cursor="text">
+            Costruisco narrazioni che uniscono parola, immagine e movimento
+            per dare forma ai <em>brand di cui la gente si ricorda.</em>
           </p>
-          <a href="#contatti" class="link-arrow">
+
+          <div class="about__details reveal">
+            <p>
+              Da anni lavoro all'incrocio tra copywriting, design e UX,
+              portando nel digitale la sensibilità visiva e narrativa del
+              cinema.<br>Il risultato sono contenuti che non si
+              limitano a comunicare ma creano emozioni.
+            </p>
+          </div>
+
+          <a href="#contatti" class="link-arrow reveal">
             Parliamo del tuo progetto
           </a>
         </div>
-      </div>
-
-      <div class="home-photo-frame" aria-hidden="true">
-        <img src="assets/img/home/about-side.jpg" alt="" class="home-photo reveal" loading="lazy">
       </div>
     </section>
 
@@ -112,10 +128,14 @@
 
     <section class="work" id="lavori">
       <div class="work__grid">
-        <a href="lavori.html" class="work-card reveal">
+        <a href="lavori.html" class="work-card work-card--media reveal">
+          <img src="assets/img/home/gallery-02.jpg" alt="" class="work-card__img" loading="lazy">
+          <span class="work-card__meta">Brand e comunicazione · Eventi</span>
           <span class="work-card__title">Lavori</span>
         </a>
-        <a href="progetti-personali.html" class="work-card reveal">
+        <a href="progetti-personali.html" class="work-card work-card--media reveal">
+          <img src="assets/img/progetti/the-social-prosthesis/galleria/cover.jpg" alt="" class="work-card__img" loading="lazy">
+          <span class="work-card__meta">Film · Sceneggiatura · Grafica</span>
           <span class="work-card__title">Progetti personali</span>
         </a>
       </div>
@@ -135,31 +155,42 @@
         </div>
       </div>
 
-      <div class="gallery-strip reveal" id="galleryStrip">
-        <img src="assets/img/home/gallery-01.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-02.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-03.jpg" alt="" class="gallery-strip__img gallery-strip__img--big" loading="lazy">
-        <img src="assets/img/home/gallery-04.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-05.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-06.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-08.jpg" alt="" class="gallery-strip__img gallery-strip__img--big" loading="lazy">
-        <img src="assets/img/home/gallery-09.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-10.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-11.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-12.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-13.jpg" alt="" class="gallery-strip__img gallery-strip__img--big" loading="lazy">
-        <img src="assets/img/home/gallery-14.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-15.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-16.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-17.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-18.jpg" alt="" class="gallery-strip__img gallery-strip__img--big" loading="lazy">
-        <img src="assets/img/home/gallery-20.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-21.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-22.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-23.jpg" alt="" class="gallery-strip__img gallery-strip__img--big" loading="lazy">
-        <img src="assets/img/home/gallery-24.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-26.jpg" alt="" class="gallery-strip__img" loading="lazy">
-        <img src="assets/img/home/gallery-27.jpg" alt="" class="gallery-strip__img" loading="lazy">
+      <div class="mosaic" id="galleryStrip">
+        <figure class="mosaic__tile mosaic__tile--big reveal"><img src="assets/img/home/gallery-03.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-01.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile mosaic__tile--tall reveal"><img src="assets/img/home/gallery-14.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-05.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+
+        <figure class="mosaic__tile mosaic__tile--tall reveal"><img src="assets/img/home/gallery-28.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-29.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile mosaic__tile--tall reveal"><img src="assets/img/home/gallery-30.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile mosaic__tile--tall reveal"><img src="assets/img/home/gallery-31.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-32.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+
+        <figure class="mosaic__tile mosaic__tile--tall reveal"><img src="assets/img/home/gallery-24.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-02.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile mosaic__tile--big reveal"><img src="assets/img/home/gallery-09.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-04.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-06.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-08.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile mosaic__tile--tall reveal"><img src="assets/img/home/gallery-11.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile mosaic__tile--tall reveal"><img src="assets/img/home/gallery-16.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-10.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-12.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+
+        <figure class="mosaic__tile mosaic__tile--big reveal"><img src="assets/img/home/gallery-13.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile mosaic__tile--tall reveal"><img src="assets/img/home/gallery-17.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile mosaic__tile--tall reveal"><img src="assets/img/home/gallery-18.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-21.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-26.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-23.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile reveal"><img src="assets/img/home/gallery-27.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+
+        <figure class="mosaic__tile mosaic__tile--tall reveal"><img src="assets/img/home/gallery-20.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile mosaic__tile--tall reveal"><img src="assets/img/home/gallery-22.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
+        <figure class="mosaic__tile mosaic__tile--big reveal"><img src="assets/img/home/gallery-15.jpg" alt="" class="gallery-strip__img" loading="lazy"></figure>
       </div>
 
       <div class="lightbox" id="lightbox" aria-hidden="true">
@@ -171,25 +202,37 @@
     </section>
 
     <section class="quote">
+      <div class="quote__bg" aria-hidden="true">
+        <img src="assets/img/home/gallery-13.jpg" alt="" id="quoteBg" loading="lazy">
+      </div>
       <p class="quote__text reveal" data-cursor="text">
-        “ Ogni progetto per me parte da una domanda: cosa deve sentire chi legge o chi guarda? ”
+        “&nbsp;Ogni progetto per me parte da una domanda: cosa deve sentire chi legge o chi&nbsp;guarda?&nbsp;”
       </p>
       <span class="quote__author reveal">— Adriano Libranti</span>
     </section>
 
   </main>
 
-  <footer class="contact" id="contatti">
-    <h2 class="contact__title reveal" data-cursor="text">Parliamo del tuo prossimo progetto.</h2>
+  <footer class="contact contact--full" id="contatti">
+    <h2 class="contact__title reveal" data-cursor="text">Parliamo del tuo<br>prossimo progetto.</h2>
 
-    <a href="mailto:librantiadriano@gmail.com" class="contact__email reveal">
-      librantiadriano@gmail.com
-    </a>
-
-    <div class="contact__socials reveal">
-      <a href="https://www.linkedin.com/in/adriano-libranti-921337409/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.instagram.com/libradri" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.facebook.com/libranti.adriano" target="_blank" rel="noopener">Facebook</a>
+    <div class="contact__cards reveal">
+      <a href="mailto:librantiadriano@gmail.com" class="contact-card">
+        <span class="contact-card__label">Email</span>
+        <span class="contact-card__value">librantiadriano@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/adriano-libranti-921337409/" target="_blank" rel="noopener" class="contact-card">
+        <span class="contact-card__label">LinkedIn</span>
+        <span class="contact-card__value">Adriano Libranti</span>
+      </a>
+      <a href="https://www.instagram.com/libradri" target="_blank" rel="noopener" class="contact-card">
+        <span class="contact-card__label">Instagram</span>
+        <span class="contact-card__value">@libradri</span>
+      </a>
+      <a href="https://www.facebook.com/libranti.adriano" target="_blank" rel="noopener" class="contact-card">
+        <span class="contact-card__label">Facebook</span>
+        <span class="contact-card__value">libranti.adriano</span>
+      </a>
     </div>
 
     <div class="contact__meta">
@@ -198,6 +241,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=31"></script>
+  <script src="assets/js/main.js?v=33"></script>
 </body>
 </html>
